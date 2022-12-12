@@ -38,8 +38,24 @@ public class HomePage extends AbstractClass {
     @FindBy(css = "div.sc-iveFHk")
     List<WebElement> productList;
 
-    @FindBy(css = "div.sc-iOeugr")
-    WebElement product;
+    @FindBy(xpath = "//a[@href='/login']")
+    WebElement loginButton;
+
+    @FindBy(xpath = "//a[@href='/register']")
+    WebElement registerButton;
+
+    @FindBy(xpath = "//input[@placeholder='username']")
+    WebElement username;
+
+    @FindBy(xpath = "//input[@placeholder='password']")
+    WebElement password;
+
+    @FindBy(css = "button.sc-dkBdza")
+    WebElement loginSubmitButton;
+
+    @FindBy(css = "img.sc-ksBlkl")
+    WebElement profilImage;
+
 
     // ACTIONS
 
@@ -119,11 +135,28 @@ public class HomePage extends AbstractClass {
         actions.moveToElement(productImage);
         WebElement product = productList.get(productIndex).findElement(By.tagName("a"));
         product.click();
-        waitVisibilityOf(product);
-        String imgLinkNewPage = product.findElement(By.tagName("img")).getAttribute("src");
+
+        waitVisibilityOfElementLocated(By.cssSelector("img.sc-jfvxQR"));
+        String imgLinkNewPage = driver.findElement(By.cssSelector("img.sc-jfvxQR")).getAttribute("src");
+        System.out.println(imgLinkNewPage);
         return imgLink.equals(imgLinkNewPage);
+    }
+
+    public void getLoginPage(String user, String userPassword){
+    waitVisibilityOf(loginButton);
+    loginButton.click();
+    waitVisibilityOf(username);
+    username.sendKeys(user);
+    password.sendKeys(userPassword);
+    loginSubmitButton.click();
 
 
+
+    }
+
+    public Boolean verifyLogin(){
+        waitVisibilityOf(profilImage);
+        return profilImage.isDisplayed();
     }
 
 
