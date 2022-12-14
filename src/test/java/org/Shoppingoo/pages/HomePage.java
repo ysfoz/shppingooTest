@@ -2,7 +2,6 @@ package org.Shoppingoo.pages;
 
 import org.Shoppingoo.utilities.AbstractClass;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -113,7 +112,7 @@ public class HomePage extends AbstractClass {
         return peopleCategoriesButtons;
     }
 
-    // Most Popular Product on Home Screen
+    // Most Popular Product on Home Screen ??
 
     public List mostPopulerProducts() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -126,37 +125,26 @@ public class HomePage extends AbstractClass {
         return areAllImagesOnScreen;
     }
 
-    public Boolean mostPopulerProductsButtons(int productIndex) {
-        Actions actions = new Actions(driver);
-        waitVisibilityOfElementLocated(By.cssSelector("div.sc-iveFHk"));
-        WebElement productImage = productList.get(productIndex).findElement(By.tagName("img"));
-        String imgLink = productImage.getAttribute("src");
-        System.out.println(imgLink);
-        actions.moveToElement(productImage);
-        WebElement product = productList.get(productIndex).findElement(By.tagName("a"));
-        product.click();
-
-        waitVisibilityOfElementLocated(By.cssSelector("img.sc-jfvxQR"));
-        String imgLinkNewPage = driver.findElement(By.cssSelector("img.sc-jfvxQR")).getAttribute("src");
-        System.out.println(imgLinkNewPage);
-        return imgLink.equals(imgLinkNewPage);
-    }
-
-    public void getLoginPage(String user, String userPassword){
-    waitVisibilityOf(loginButton);
-    loginButton.click();
-    waitVisibilityOf(username);
-    username.sendKeys(user);
-    password.sendKeys(userPassword);
-    loginSubmitButton.click();
 
 
+    public void getLoginPage(String user, String userPassword) {
+        waitVisibilityOf(loginButton);
+        loginButton.click();
+        waitVisibilityOf(username);
+        username.sendKeys(user);
+        password.sendKeys(userPassword);
+        loginSubmitButton.click();
 
     }
 
-    public Boolean verifyLogin(){
+    public Boolean verifyLogin() {
         waitVisibilityOf(profilImage);
         return profilImage.isDisplayed();
+    }
+
+    public ProductPage getProductPage(int productIndex){
+        goProductPage(productIndex,productList);
+        return new ProductPage(driver);
     }
 
 
