@@ -137,6 +137,7 @@ public class HomePage extends AbstractClass {
 
     }
 
+
     public Boolean verifyLogin() {
         waitVisibilityOf(profilImage);
         return profilImage.isDisplayed();

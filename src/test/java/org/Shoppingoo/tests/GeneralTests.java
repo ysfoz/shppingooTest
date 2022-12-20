@@ -1,5 +1,6 @@
 package org.Shoppingoo.tests;
 
+import org.Shoppingoo.pages.CartPage;
 import org.Shoppingoo.pages.ProductPage;
 import org.Shoppingoo.utilities.BaseTest;
 import org.openqa.selenium.WebElement;
@@ -81,6 +82,24 @@ public class GeneralTests extends BaseTest {
         softAssert.assertTrue(productPage.controlBadge(3));
         softAssert.assertAll();
     }
+
+    @Test(groups = "logedIn")
+    public void verifyColorSizeAmount(){
+        ProductPage productPage = home.getProductPage(5);
+        String color = productPage.selectColor();
+        String size = productPage.selectSize();
+        String amount = productPage.selectAmount(5);
+        productPage.clickAddToCartButton();
+        CartPage cartPage =  productPage.goToCartPage();
+        List<String> propertiesList = cartPage.getColorSizeAmountFromCart();
+        softAssert.assertTrue(color.equals(propertiesList.get(0)),"color is false");
+        softAssert.assertTrue(size.equals(propertiesList.get(1)),"size is false");
+        softAssert.assertTrue(amount.equals(propertiesList.get(2)),"amount is false");
+        softAssert.assertAll();
+
+    }
+
+
 
 
 }

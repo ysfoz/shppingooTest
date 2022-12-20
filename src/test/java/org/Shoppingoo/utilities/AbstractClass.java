@@ -1,5 +1,6 @@
 package org.Shoppingoo.utilities;
 
+import org.Shoppingoo.pages.CartPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,7 +22,7 @@ public abstract class AbstractClass {
 //        PageFactory.initElements(driver,this);
     }
     // Nav Bar Buttons
-    @FindBy(css = "MuiBadge-root")
+    @FindBy(css = "div.sc-bqWxrE:first-child")
     WebElement gotoCartButtonOnNavBar;
 
     @FindBy(css = "div.sc-bqWxrE img")
@@ -54,6 +55,11 @@ public abstract class AbstractClass {
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
+//    public void waitTextToBePresentInElementValue(WebElement element){
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+//        wait.until(ExpectedConditions.textToBePresentInElementValue(element, String.valueOf(Integer.parseInt(element.getText()) + 1)));
+//    }
+
     public void waitTextToBePresentInElement(WebElement element, String value){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.textToBePresentInElement(element,value));
@@ -65,6 +71,11 @@ public abstract class AbstractClass {
         WebElement productImage = list.get(productIndex).findElement(By.tagName("img"));
         actions.moveToElement(productImage);
         list.get(productIndex).findElement(By.tagName("a")).click();
+    }
+
+    public CartPage goToCartPage(){
+        gotoCartButtonOnNavBar.click();
+        return new CartPage(driver);
     }
 
 

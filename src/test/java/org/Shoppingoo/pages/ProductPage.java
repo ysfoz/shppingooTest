@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
@@ -59,8 +60,7 @@ public class ProductPage extends AbstractClass {
     WebElement addToCartButton;
 
 
-
-//    @Test(groups = "logedIn",description = "to get product page and check all elements on this page")
+    //    @Test(groups = "logedIn",description = "to get product page and check all elements on this page")
 //    public void goProductPage()
     public Boolean imageOnScreen() {
         waitVisibilityOf(productImage);
@@ -106,14 +106,57 @@ public class ProductPage extends AbstractClass {
         waitVisibilityOf(addToCartButton);
         int bofereClicked = Integer.parseInt(badge.getText());
         addToCartButton.click();
-        waitTextToBePresentInElement(badge,String.valueOf(bofereClicked+1));
+        waitTextToBePresentInElement(badge, String.valueOf(bofereClicked + 1));
         driver.navigate().back();
-        goProductPage(productIndex,driver.findElements(By.cssSelector("div.sc-iveFHk")));
+        goProductPage(productIndex, driver.findElements(By.cssSelector("div.sc-iveFHk")));
         waitVisibilityOf(addToCartButton);
         addToCartButton.click();
-        waitTextToBePresentInElement(badge,String.valueOf(bofereClicked+2));
-        return badge.getText().equals(String.valueOf(bofereClicked+2));
+        waitTextToBePresentInElement(badge, String.valueOf(bofereClicked + 2));
+        return badge.getText().equals(String.valueOf(bofereClicked + 2));
     }
+
+    public String selectColor() {
+        WebElement selectedButton = colorButtons.get(colorButtons.size() - 1);
+        selectedButton.click();
+        return selectedButton.getAttribute("color");
+    }
+
+    public String selectSize() {
+        Select select = new Select(sizeSelect);
+        select.getFirstSelectedOption();
+        return select.getFirstSelectedOption().getText();
+    }
+
+    public String selectAmount(int repeat) {
+        int inc = 0;
+        int decr = 0;
+        if (repeat <= 0) {
+            inc = 0;
+            decr = 0;
+        } else {
+            inc = repeat;
+            decr = repeat - 1;
+        }
+        waitVisibilityOf(amountIncrease);
+        while (inc > 0) {
+            amountIncrease.click();
+            inc--;
+        }
+        while (decr > 0) {
+            amountDecrease.click();
+            decr--;
+        }
+        return amount.getText();
+
+    }
+
+    public void clickAddToCartButton(){
+        int value = Integer.parseInt(badge.getText());
+        addToCartButton.click();
+        waitTextToBePresentInElement(badge,String.valueOf(value + 1));
+    }
+
+
 }
 
 
