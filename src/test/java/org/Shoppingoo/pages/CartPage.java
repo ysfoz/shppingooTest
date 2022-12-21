@@ -13,16 +13,27 @@ import java.util.List;
 public class CartPage extends AbstractClass {
 
     WebDriver driver;
-    public CartPage(WebDriver driver){
+
+    public CartPage(WebDriver driver) {
         super(driver);
-        this.driver =driver;
-        PageFactory.initElements(driver,this);
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
     @FindBy(css = "div.sc-caPbAK:nth-last-of-type(2)")
     WebElement lastAddedProduct;
 
-    public List<String> getColorSizeAmountFromCart(){
+    @FindBy(css = "div.sc-caPbAK")
+    List<WebElement> productList;
+
+    @FindBy(xpath = "//*[@type='total']//span[contains(.,'$')]")
+    WebElement totalPrice;
+
+    @FindBy(xpath = "//div[@style='font-size: 12px; color: blueviolet;']")
+    List<WebElement> allPriceList;
+
+
+    public List<String> getColorSizeAmountFromCart() {
         List<String> list = new ArrayList<String>();
         String color = lastAddedProduct.findElement(By.cssSelector("div.sc-gkSfol")).getAttribute("color");
         String size = lastAddedProduct.findElement(By.cssSelector("span.sc-fmPOXC")).getText().split(":")[1].trim();
@@ -31,6 +42,24 @@ public class CartPage extends AbstractClass {
         list.add(size);
         list.add(amount);
         return list;
+    }
+
+    public Boolean compareTotalPrice() {
+        int totalPriceOnProducts = 0;
+        int priceOnOrderSummery = Integer.parseInt(totalPrice.getText().split(" ")[1].trim());
+        if (priceOnOrderSummery == 0){
+            return true;
+        }
+        for(int i = 0; i < allPriceList.size();i++){
+            int price = Integer.parseInt(allPriceList.get(i).getText().split(" ")[1].trim());
+            totalPriceOnProducts += price;
+        }
+        if(totalPriceOnProducts < 60){
+            totalPriceOnProducts += 5.90;
+        }
+        return totalPriceOnProducts == priceOnOrderSummery;
+
+
     }
 
 
