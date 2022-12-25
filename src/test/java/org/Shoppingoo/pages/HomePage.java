@@ -2,6 +2,7 @@ package org.Shoppingoo.pages;
 
 import org.Shoppingoo.utilities.AbstractClass;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -146,6 +147,15 @@ public class HomePage extends AbstractClass {
     public ProductPage getProductPage(int productIndex){
         goProductPage(productIndex,productList);
         return new ProductPage(driver);
+    }
+
+    public void addToCartFromMostPopuler(int productIndex){
+        Actions actions = new Actions(driver);
+        waitVisibilityOfElementLocated(By.cssSelector("div.sc-iveFHk"));
+        WebElement productImage = productList.get(productIndex).findElement(By.tagName("img"));
+        actions.moveToElement(productImage);
+        System.out.println(productList.get(productIndex).findElement(By.tagName("svg")).getAttribute("class"));
+        productList.get(productIndex).findElement(By.tagName("svg")).click();
     }
 
 

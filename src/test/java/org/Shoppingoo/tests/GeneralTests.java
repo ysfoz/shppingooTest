@@ -101,5 +101,56 @@ public class GeneralTests extends BaseTest {
         softAssert.assertAll();
     }
 
+    @Test(groups = "logedIn", description = "to check delete button in Basket")
+    public void checkDeleteButtonInBasket() throws InterruptedException {
+        home.addToCartFromMostPopuler(3);
+        CartPage cartPage = home.goToCartPage();
+        Integer productCount = cartPage.getCountOfProducts("basket");
+        Integer afterClickProductCount = cartPage.deleteProduct("basket");
+        softAssert.assertTrue(productCount - 1 == afterClickProductCount, "delete button does not work");
+        softAssert.assertAll();
+    }
+
+    @Test(groups = "logedIn", description = "to check delete button in save for later ")
+    public void checkDeleteButtonInSaveForLater() throws InterruptedException {
+        home.addToCartFromMostPopuler(5);
+        CartPage cartPage = home.goToCartPage();
+        cartPage.addSaveForLater();
+        Integer productCount = cartPage.getCountOfProducts("later");
+        Integer afterClickProductCount = cartPage.deleteProduct("later");
+        softAssert.assertTrue(productCount - 1 == afterClickProductCount, "delete button does not work i save for later");
+        softAssert.assertAll();
+    }
+
+    @Test(groups = "logedIn", description = "to check save for later button functionality")
+    public void checkSaveForLaterButton() throws InterruptedException {
+        home.addToCartFromMostPopuler(2);
+        CartPage cartPage = home.goToCartPage();
+        Integer productCount = cartPage.getCountOfProducts("basket");
+        Integer saveForLaterItemCount = cartPage.getCountOfProducts("later");
+        Integer afterClickSaveForLaterItemCount = cartPage.saveForLaterOrMoveToBasket("save");
+        Integer afterClickProductCount = cartPage.getCountOfProducts("basket");
+        softAssert.assertTrue(saveForLaterItemCount + 1 == afterClickSaveForLaterItemCount, "save for later button does not work - save for later list did not change");
+        softAssert.assertTrue(productCount - 1 == afterClickProductCount, "safe for later button does not work - product list did not change");
+        softAssert.assertAll();
+
+    }
+
+
+    @Test(groups = "logedIn", description = "to check move to basket button")
+    public void checkMoveToBasketButton() throws InterruptedException {
+        home.addToCartFromMostPopuler(1);
+        CartPage cartPage = home.goToCartPage();
+        Integer productCount = cartPage.getCountOfProducts("basket");
+        cartPage.addSaveForLater();
+        Integer saveForLaterItemCount = cartPage.getCountOfProducts("later");
+        Integer afterClickSaveForLaterItemCount = cartPage.saveForLaterOrMoveToBasket("move");
+        Integer afterClickProductCount = cartPage.getCountOfProducts("basket");
+        softAssert.assertTrue(saveForLaterItemCount - 1 == afterClickSaveForLaterItemCount, "move to basket button does not work - save for later list did not change");
+        softAssert.assertTrue(productCount == afterClickProductCount, "move to basket button does not work - product list did not change");
+        softAssert.assertAll();
+
+    }
+
 
 }
