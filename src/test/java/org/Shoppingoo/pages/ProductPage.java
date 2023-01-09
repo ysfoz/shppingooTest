@@ -24,7 +24,7 @@ public class ProductPage extends AbstractClass {
     WebElement productImage;
 
     @FindBy(css = "h1.sc-oZIhv")
-    WebElement productTitle;
+    public WebElement productTitle;
 
     @FindBy(css = "p.sc-hiDMwi")
     WebElement productdesc;

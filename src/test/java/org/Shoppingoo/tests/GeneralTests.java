@@ -1,12 +1,14 @@
 package org.Shoppingoo.tests;
 
 import org.Shoppingoo.pages.CartPage;
+import org.Shoppingoo.pages.ProductListPage;
 import org.Shoppingoo.pages.ProductPage;
 import org.Shoppingoo.utilities.BaseTest;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GeneralTests extends BaseTest {
@@ -101,24 +103,31 @@ public class GeneralTests extends BaseTest {
         softAssert.assertAll();
     }
 
+    // bu fonksiyonlari filter yada search sonrasi kullanmak daha faydali olacak. Key word ler belirleyerek, urunlerin isimlerine gore sonuclar almayi deneyelim.
+
     @Test(groups = "logedIn", description = "to check delete button in Basket")
     public void checkDeleteButtonInBasket() throws InterruptedException {
         home.addToCartFromMostPopuler(3);
         CartPage cartPage = home.goToCartPage();
         Integer productCount = cartPage.getCountOfProducts("basket");
+        System.out.println(productCount);
         Integer afterClickProductCount = cartPage.deleteProduct("basket");
+        System.out.println(afterClickProductCount);
         softAssert.assertTrue(productCount - 1 == afterClickProductCount, "delete button does not work");
         softAssert.assertAll();
     }
 
     @Test(groups = "logedIn", description = "to check delete button in save for later ")
+    // basket icersindeki ilk delete butonunu calistiriyor
     public void checkDeleteButtonInSaveForLater() throws InterruptedException {
         home.addToCartFromMostPopuler(5);
         CartPage cartPage = home.goToCartPage();
         cartPage.addSaveForLater();
         Integer productCount = cartPage.getCountOfProducts("later");
+        System.out.println(productCount);
         Integer afterClickProductCount = cartPage.deleteProduct("later");
-        softAssert.assertTrue(productCount - 1 == afterClickProductCount, "delete button does not work i save for later");
+        System.out.println(afterClickProductCount);
+        softAssert.assertTrue(productCount - 1 == afterClickProductCount, "delete button does not work in save for later");
         softAssert.assertAll();
     }
 
@@ -150,6 +159,78 @@ public class GeneralTests extends BaseTest {
         softAssert.assertTrue(productCount == afterClickProductCount, "move to basket button does not work - product list did not change");
         softAssert.assertAll();
 
+    }
+
+    @Test(groups = "logedIn", description = "to check see more like this button")
+    // her zamna basket icersindeki ilk butonunu calistiriyor
+    public void checkSeeMoreLikeThis() throws InterruptedException {
+        home.addToCartFromMostPopuler(1);
+        CartPage cartPage = home.goToCartPage();
+        cartPage.seeMoreLikeThis();
+    }
+
+// buraya kadar olan testler tekrar gozden gecirilecek - --  -- - - - - - -  - --
+
+
+    // bu testen bilerek hata almak istiyorum, raporda gosterebilmek icin.
+    @Test(groups = "logedIn", description = "to check possibility of same product 2 times adding to cart with add cart button ")
+    public void controlSameProductTwoTimesAdding() throws InterruptedException {
+        softAssert.assertTrue(home.addProductToCartThreeTimes(), "Same product can be added 2 or more times to cart");
+        softAssert.assertAll();
+    }
+
+    @Test(groups = "logedIn")
+    public void verifyFunctionalityOfSearchbarAtHomePage() {
+        List<String> keyList = new ArrayList<>(List.of("bag", "coat", "dress"));
+        List<Boolean> matchList = home.searchProduct(keyList);
+        softAssert.assertTrue(matchList.stream().allMatch(n -> n = true), "All search keys are not match with product's title");
+        softAssert.assertAll();
+    }
+
+    @Test(groups = "logedIn")
+    public void verifyColorFilter() throws InterruptedException {
+        ProductListPage productListPage = home.getProductListPage();
+        List<Boolean> matchList = productListPage.checkColorFilter();
+        matchList.forEach(element -> softAssert.assertTrue(element, "This Product with this color not in product List"));
+        softAssert.assertAll();
+    }
+
+    @Test(groups = "logedIn")
+    public void verifyColorFilterNotInProduct() throws InterruptedException {
+        ProductListPage productListPage = home.getProductListPage();
+        List<Boolean> matchList = productListPage.checkColorFilterNotInProduct();
+        matchList.forEach(element -> softAssert.assertFalse(element, "This Product with this size in product List"));
+        softAssert.assertAll();
+    }
+
+    @Test(groups = "logedIn")
+    public void verifySizeFilter() throws InterruptedException {
+        ProductListPage productListPage = home.getProductListPage();
+        List<Boolean> matchList = productListPage.checkSizeFilter();
+        matchList.forEach(element -> softAssert.assertTrue(element, "This Product with this size not in product List"));
+        softAssert.assertAll();
+    }
+
+    @Test(groups = "logedIn")
+    public void verifySizeFilterNotInProduct() throws InterruptedException {
+        ProductListPage productListPage = home.getProductListPage();
+        List<Boolean> matchList = productListPage.checkSizeFilterNotInProduct();
+        matchList.forEach(element -> softAssert.assertFalse(element, "This Product with this size in product List"));
+        softAssert.assertAll();
+    }
+
+    @Test(groups = "logedIn")
+    public void verifySizeAndColorWithKeyword() throws InterruptedException {
+        ProductListPage productListPage = home.getProductListPage();
+        Boolean match1 = productListPage.checkSizeAndColorWithKeyword("red","s");
+        Boolean match2 = productListPage.checkSizeAndColorWithKeyword("yellow","xl");
+        Boolean match3 = productListPage.checkSizeAndColorWithKeyword("white","l");
+        Boolean match4 = productListPage.checkSizeAndColorWithKeyword("black","xs");
+        softAssert.assertTrue(match1,"selected a product that is in the list but it is not on the screen");
+        softAssert.assertTrue(match2,"selected a product that is not in the list but it is on the screen");
+        softAssert.assertTrue(match3,"selected a product that is not in the list but it is on the screen");
+        softAssert.assertTrue(match4,"selected a product that is not in the list but it is on the screen");
+        softAssert.assertAll();
     }
 
 

@@ -35,10 +35,11 @@ public class HomePage extends AbstractClass {
     @FindBy(xpath = "//div[@direction='right']")
     WebElement slideRightButton;
 
-    @FindBy(css = "div.sc-iveFHk")
-    List<WebElement> productList;
+//    @FindBy(css = "div.sc-iveFHk")
+//    List<WebElement> productListOnHome;
 
     @FindBy(xpath = "//a[@href='/login']")
+
     WebElement loginButton;
 
     @FindBy(xpath = "//a[@href='/register']")
@@ -55,6 +56,9 @@ public class HomePage extends AbstractClass {
 
     @FindBy(css = "img.sc-ksBlkl")
     WebElement profilImage;
+
+    @FindBy(xpath = "//h1[text()='WOMAN']/following-sibling::button")
+    WebElement womanProductButton;
 
 
     // ACTIONS
@@ -120,7 +124,7 @@ public class HomePage extends AbstractClass {
         js.executeScript("window.scrollBy(0,700)");
         waitVisibilityOfElementLocated(By.cssSelector("div.sc-iveFHk"));
         List<Boolean> areAllImagesOnScreen = new ArrayList<>();
-        productList.stream().forEach(item ->
+        productListOnHome.stream().forEach(item ->
                 areAllImagesOnScreen.add(item.findElement(By.tagName("img")).isDisplayed())
         );
         return areAllImagesOnScreen;
@@ -144,19 +148,41 @@ public class HomePage extends AbstractClass {
         return profilImage.isDisplayed();
     }
 
-    public ProductPage getProductPage(int productIndex){
-        goProductPage(productIndex,productList);
-        return new ProductPage(driver);
-    }
+//    public ProductPage getProductPage(int productIndex){
+//        goProductPage(productIndex,productListOnHome);
+//        return new ProductPage(driver);
+//    }
 
     public void addToCartFromMostPopuler(int productIndex){
         Actions actions = new Actions(driver);
         waitVisibilityOfElementLocated(By.cssSelector("div.sc-iveFHk"));
-        WebElement productImage = productList.get(productIndex).findElement(By.tagName("img"));
+        WebElement productImage = productListOnHome.get(productIndex).findElement(By.tagName("img"));
         actions.moveToElement(productImage);
-        System.out.println(productList.get(productIndex).findElement(By.tagName("svg")).getAttribute("class"));
-        productList.get(productIndex).findElement(By.tagName("svg")).click();
+        productListOnHome.get(productIndex).findElement(By.tagName("svg")).click();
     }
+
+    public Boolean addProductToCartThreeTimes() throws InterruptedException {
+        waitVisibilityOf(badge);
+        int totalProductFirst = Integer.parseInt(badge.getText());
+        addToCartFromMostPopuler(4);
+        Thread.sleep(1000);
+        addToCartFromMostPopuler(4);
+        Thread.sleep(1000);
+        addToCartFromMostPopuler(4);
+        Thread.sleep(1000);
+        int totalProductLast = Integer.parseInt(badge.getText());
+        return (totalProductLast -1) == totalProductFirst;
+    }
+
+    public ProductListPage getProductListPage(){
+        waitVisibilityOf(womanProductButton);
+        womanProductButton.click();
+        return new ProductListPage(driver);
+    }
+
+
+
+
 
 
 }
