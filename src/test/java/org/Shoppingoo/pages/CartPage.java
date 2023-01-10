@@ -50,7 +50,6 @@ public class CartPage extends AbstractClass {
     List<WebElement> buttonboxesUnderSaveForLater;
 
 
-
     @FindBy(xpath = "//button[text()='Orders']")
     WebElement ordersButton;
 
@@ -106,8 +105,6 @@ public class CartPage extends AbstractClass {
         }
     }
 
-
-    // bu fonksiyon uzerinde calisilacak, ozellikle else bolumunde hata var. delete butonu save for later listesinden degil basketten calisiyor.
     public Integer deleteProduct(String whichList) throws InterruptedException {
         if (whichList.equals("basket")) {
             waitVisibilityOf(productContainer);
@@ -117,14 +114,13 @@ public class CartPage extends AbstractClass {
             return productList.size();
         } else {
             waitVisibilityOf(saveForLaterProductsContainer);
-            WebElement deleteButton =buttonboxesUnderSaveForLater.get(buttonboxesUnderSaveForLater.size() -1).findElement(By.xpath("//button[text()='Delete']"));
+            WebElement deleteButton = buttonboxesUnderSaveForLater.get(buttonboxesUnderSaveForLater.size() - 1).findElement(By.xpath("//button[text()='Delete']"));
             deleteButton.click();
             Thread.sleep(3000);
             return saveForLaterList.size();
         }
-
     }
-    
+
     public void addSaveForLater() throws InterruptedException {
         WebElement saveForLaterButton = buttonboxesUnderProducts.get(buttonboxesUnderProducts.size() - 1).findElement(By.xpath("//button[text()='Save for later']"));
         saveForLaterButton.click();
@@ -135,22 +131,20 @@ public class CartPage extends AbstractClass {
         WebElement moveToBasketButton = buttonboxesUnderSaveForLater.get(buttonboxesUnderSaveForLater.size() - 1).findElement(By.xpath("//button[text()='move to basket']"));
         moveToBasketButton.click();
     }
-// bu fonksiyon uzerinde calisilacak
+
+    // bu fonksiyon uzerinde calisilacak
     public void seeMoreLikeThis() throws InterruptedException {
-        String title = productList.get(productList.size() -1).findElement(By.cssSelector("span.sc-gzrROc")).getText().split(":")[1].split(" ")[0].trim();
+        String title = productList.get(productList.size() - 1).findElement(By.cssSelector("span.sc-gzrROc")).getText().split(":")[1].split(" ")[0].trim();
         System.out.println(title + " title");
         System.out.println(productList.size() + " product list");
         waitVisibilityOf(buttonboxesUnderProducts.get(buttonboxesUnderProducts.size() - 1));
         Thread.sleep(5000);
-        buttonboxesUnderProducts.forEach(item-> System.out.println(item.findElement(By.xpath("//button[text()='See more like this']")).getAttribute("class")));
+        buttonboxesUnderProducts.forEach(item -> System.out.println(item.findElement(By.xpath("//button[text()='See more like this']")).getAttribute("class")));
         WebElement seeMoreLikeThisButton = buttonboxesUnderProducts.get(buttonboxesUnderProducts.size() - 1).findElement(By.xpath("//button[text()='See more like this']"));
         seeMoreLikeThisButton.click();
         System.out.println(buttonboxesUnderProducts.size() + " button boexes list");
-            waitVisibilityOf(productsInSeeMoreLikeThis.get(0));
-            productsInSeeMoreLikeThis.forEach(element -> System.out.println("element " + element.getText().split(" ")[0].trim()));
-
-
-
+        waitVisibilityOf(productsInSeeMoreLikeThis.get(0));
+        productsInSeeMoreLikeThis.forEach(element -> System.out.println("element " + element.getText().split(" ")[0].trim()));
     }
 
     public Integer saveForLaterOrMoveToBasket(String action) throws InterruptedException {

@@ -79,7 +79,7 @@ public class GeneralTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(groups = "logedIn")
+    @Test(groups = "logedIn", description = "to control products's color, size and amount are correct or not")
     public void verifyColorSizeAmount() {
         ProductPage productPage = home.getProductPage(5);
         String color = productPage.selectColor();
@@ -179,7 +179,7 @@ public class GeneralTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(groups = "logedIn")
+    @Test(groups = "logedIn", description = "to control search function with keyword value")
     public void verifyFunctionalityOfSearchbarAtHomePage() {
         List<String> keyList = new ArrayList<>(List.of("bag", "coat", "dress"));
         List<Boolean> matchList = home.searchProduct(keyList);
@@ -187,7 +187,7 @@ public class GeneralTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(groups = "logedIn")
+    @Test(groups = "logedIn", description = "To control filtering function, but only what colors are available for the product.")
     public void verifyColorFilter() throws InterruptedException {
         ProductListPage productListPage = home.getProductListPage();
         List<Boolean> matchList = productListPage.checkColorFilter();
@@ -195,7 +195,7 @@ public class GeneralTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(groups = "logedIn")
+    @Test(groups = "logedIn", description = "To control filtering function, but only what colors are not available for the product.")
     public void verifyColorFilterNotInProduct() throws InterruptedException {
         ProductListPage productListPage = home.getProductListPage();
         List<Boolean> matchList = productListPage.checkColorFilterNotInProduct();
@@ -203,7 +203,7 @@ public class GeneralTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(groups = "logedIn")
+    @Test(groups = "logedIn", description = "To control filtering function, but only what sizes are available for the product.")
     public void verifySizeFilter() throws InterruptedException {
         ProductListPage productListPage = home.getProductListPage();
         List<Boolean> matchList = productListPage.checkSizeFilter();
@@ -211,7 +211,7 @@ public class GeneralTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(groups = "logedIn")
+    @Test(groups = "logedIn", description = "To control filtering function, but only what sizes are not available for the product.")
     public void verifySizeFilterNotInProduct() throws InterruptedException {
         ProductListPage productListPage = home.getProductListPage();
         List<Boolean> matchList = productListPage.checkSizeFilterNotInProduct();
@@ -219,17 +219,17 @@ public class GeneralTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(groups = "logedIn")
+    @Test(groups = "logedIn", description = "To control filtering functions for sizes and colors with keyword values")
     public void verifySizeAndColorWithKeyword() throws InterruptedException {
         ProductListPage productListPage = home.getProductListPage();
-        Boolean match1 = productListPage.checkSizeAndColorWithKeyword("red","s");
-        Boolean match2 = productListPage.checkSizeAndColorWithKeyword("yellow","xl");
-        Boolean match3 = productListPage.checkSizeAndColorWithKeyword("white","l");
-        Boolean match4 = productListPage.checkSizeAndColorWithKeyword("black","xs");
-        softAssert.assertTrue(match1,"selected a product that is in the list but it is not on the screen");
-        softAssert.assertTrue(match2,"selected a product that is not in the list but it is on the screen");
-        softAssert.assertTrue(match3,"selected a product that is not in the list but it is on the screen");
-        softAssert.assertTrue(match4,"selected a product that is not in the list but it is on the screen");
+        Boolean match1 = productListPage.checkSizeAndColorWithKeyword("red", "s");
+        Boolean match2 = productListPage.checkSizeAndColorWithKeyword("yellow", "xl");
+        Boolean match3 = productListPage.checkSizeAndColorWithKeyword("white", "l");
+        Boolean match4 = productListPage.checkSizeAndColorWithKeyword("black", "xs");
+        softAssert.assertTrue(match1, "selected a product that is in the list but it is not on the screen");
+        softAssert.assertTrue(match2, "selected a product that is not in the list but it is on the screen");
+        softAssert.assertTrue(match3, "selected a product that is not in the list but it is on the screen");
+        softAssert.assertTrue(match4, "selected a product that is not in the list but it is on the screen");
         softAssert.assertAll();
     }
 

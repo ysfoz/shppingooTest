@@ -60,8 +60,6 @@ public class ProductPage extends AbstractClass {
     WebElement addToCartButton;
 
 
-    //    @Test(groups = "logedIn",description = "to get product page and check all elements on this page")
-//    public void goProductPage()
     public Boolean imageOnScreen() {
         waitVisibilityOf(productImage);
         return productImage.isDisplayed();
@@ -150,10 +148,10 @@ public class ProductPage extends AbstractClass {
 
     }
 
-    public void clickAddToCartButton(){
+    public void clickAddToCartButton() {
         int value = Integer.parseInt(badge.getText());
         addToCartButton.click();
-        waitTextToBePresentInElement(badge,String.valueOf(value + 1));
+        waitTextToBePresentInElement(badge, String.valueOf(value + 1));
     }
 
 

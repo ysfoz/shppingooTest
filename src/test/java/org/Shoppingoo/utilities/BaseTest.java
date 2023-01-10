@@ -9,14 +9,10 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.time.Duration;
 import java.util.Properties;
 
@@ -64,21 +60,24 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         return driver;
     }
-    @BeforeMethod(onlyForGroups = "logedIn",alwaysRun = true)
+
+    @BeforeMethod(onlyForGroups = "logedIn", alwaysRun = true)
     public HomePage logedInMethod() throws IOException {
         driver = getDriver();
         home = new HomePage(driver);
         home.getPage();
-        home.getLoginPage("admin","123456");
+        home.getLoginPage("admin", "123456");
         return home;
     }
-    @BeforeMethod(onlyForGroups = "withoutlogin",alwaysRun = true)
+
+    @BeforeMethod(onlyForGroups = "withoutlogin", alwaysRun = true)
     public HomePage launchApp() throws IOException {
         driver = getDriver();
         home = new HomePage(driver);
         home.getPage();
         return home;
     }
+
     @AfterMethod(alwaysRun = true)
     public void tearDown() throws IOException {
         driver.close();

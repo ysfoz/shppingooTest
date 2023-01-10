@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductListPage extends AbstractClass {
-
     WebDriver driver;
 
     public ProductListPage(WebDriver driver) {
@@ -36,8 +35,6 @@ public class ProductListPage extends AbstractClass {
     WebElement selectColor;
     @FindBy(xpath = "//select[@name='size']")
     WebElement selectSize;
-    @FindBy(xpath = "//select[@name='size']")
-    WebElement selectedProduct;
 
     public List<String> getColors() {
         List<String> colors = new ArrayList<>();
@@ -46,7 +43,6 @@ public class ProductListPage extends AbstractClass {
         colorList.forEach(element -> colors.add(element.getAttribute("color")));
         driver.navigate().back();
         return colors;
-
     }
 
     public List<String> getSizes() {
@@ -165,15 +161,3 @@ public class ProductListPage extends AbstractClass {
 
 
 }
-
-/*
-Flter
-* login ol
-* woman butonuna tikla
-bir urune ait renk ve size listeleri olustur.
-oncelile urunun img src sine gire bul
-daha sonra filtreleri uygula
-dogru filtrelerde urunun var oldugunu yanlis filtrelerde yok oldugunu assert et.
-
-*
-* */
