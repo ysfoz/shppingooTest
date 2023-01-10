@@ -10,6 +10,7 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GeneralTests extends BaseTest {
     SoftAssert softAssert = new SoftAssert();
@@ -231,6 +232,21 @@ public class GeneralTests extends BaseTest {
         softAssert.assertTrue(match3, "selected a product that is not in the list but it is on the screen");
         softAssert.assertTrue(match4, "selected a product that is not in the list but it is on the screen");
         softAssert.assertAll();
+    }
+    @Test(groups = "logedIn", description = "To control filtering functions and sorting functions together")
+    public void verifySortingProductsWithPriceAsc() throws InterruptedException{
+        ProductListPage productListPage = home.getProductListPage();
+        Boolean match = productListPage.controlSortFunction("black","s","asc");
+        softAssert.assertTrue(match,"Asc sorting Process is not working correctly");
+
+    }
+
+    @Test(groups = "logedIn", description = "To control filtering functions and sorting functions together")
+    public void verifySortingProductsWithPriceDesc() throws InterruptedException{
+        ProductListPage productListPage = home.getProductListPage();
+        Boolean match = productListPage.controlSortFunction("blue","l","desc");
+        softAssert.assertTrue(match,"Desc sorting Process is not working correctly");
+
     }
 
 

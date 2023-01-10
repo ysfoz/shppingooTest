@@ -8,7 +8,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProductListPage extends AbstractClass {
     WebDriver driver;
@@ -36,6 +38,10 @@ public class ProductListPage extends AbstractClass {
     @FindBy(xpath = "//select[@name='size']")
     WebElement selectSize;
 
+    @FindBy(xpath = "//div[2]//select[1]")
+    WebElement selectSort;
+
+    // FILTERING //
     public List<String> getColors() {
         List<String> colors = new ArrayList<>();
         goProductPage(productList.size() - 1, productList);
@@ -124,7 +130,6 @@ public class ProductListPage extends AbstractClass {
         return matchList;
     }
 
-
     public Boolean checkSizeAndColorWithKeyword(String color, String size) throws InterruptedException {
         Boolean colors = getColors().stream().anyMatch(item -> item.equals(color));
         Boolean sizes = getSizes().stream().anyMatch(item -> item.equals(size));
@@ -156,6 +161,67 @@ public class ProductListPage extends AbstractClass {
             return true;
         }
         return false;
+
+    }
+
+    // SORTING WITH FOLTERING //
+
+    public String getPrice() {
+        String price = productPrice.getText().split(" ")[1].trim();
+        return price;
+    }
+
+    public void setColor(String color) {
+        Select select = new Select(selectColor);
+        select.selectByVisibleText(color);
+    }
+
+    public void setSize(String size) {
+        Select select = new Select(selectSize);
+        select.selectByVisibleText(size);
+    }
+
+    public void setPriceSort(String descOrAsc) {
+        Select select = new Select(selectSort);
+        select.selectByValue(descOrAsc);
+    }
+
+
+    public List<String> SortFilteredProductsPrice(String color, String size, String descOrAsc) throws InterruptedException {
+        waitVisibilityOf(selectSort);
+        String price;
+        List<String> priceList = new ArrayList<>();
+        setColor(color);
+        setSize(size);
+        setPriceSort(descOrAsc);
+        int count = 0;
+        Thread.sleep(2000);
+        int listSize = productList.size();
+        while (count < listSize) {
+            setColor(color);
+            setSize(size);
+            setPriceSort(descOrAsc);
+            goProductPage(count, productList);
+            price = getPrice();
+            priceList.add(price);
+            driver.navigate().back();
+            count++;
+        }
+        return priceList;
+
+    }
+
+    public Boolean controlSortFunction(String color, String size, String descOrAsc) throws InterruptedException {
+        List<Integer> priceList = SortFilteredProductsPrice(color, size, descOrAsc).stream().map(item -> Integer.parseInt(item)).collect(Collectors.toList());
+        List<Integer> sortedList = priceList.stream().sorted().collect(Collectors.toList());
+        if (descOrAsc.equals("asc") && sortedList.equals(priceList)) {
+            return true;
+        } else if (descOrAsc.equals("desc") && sortedList.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList()).equals(priceList)) {
+            return true;
+        } else {
+            return false;
+        }
+
 
     }
 

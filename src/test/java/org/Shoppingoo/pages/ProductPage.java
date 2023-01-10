@@ -29,8 +29,6 @@ public class ProductPage extends AbstractClass {
     @FindBy(css = "p.sc-hiDMwi")
     WebElement productdesc;
 
-    @FindBy(css = "h1.sc-oZIhv")
-    WebElement productPrice;
 
     @FindBy(css = "div.sc-ckEbSK:nth-last-child(2)")
     WebElement productColor;
@@ -58,6 +56,8 @@ public class ProductPage extends AbstractClass {
 
     @FindBy(css = "button.sc-jNJNQp")
     WebElement addToCartButton;
+
+
 
 
     public Boolean imageOnScreen() {
