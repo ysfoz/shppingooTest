@@ -4,6 +4,7 @@ import org.Shoppingoo.pages.CartPage;
 import org.Shoppingoo.pages.ProductListPage;
 import org.Shoppingoo.pages.ProductPage;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -12,7 +13,6 @@ import java.util.List;
 
 public class GeneralTests extends TestBase {
     SoftAssert softAssert = new SoftAssert();
-
 
 
     @Test(groups = "withoutlogin", description = "Verify the company logo, name, title are  visible.")
@@ -27,9 +27,7 @@ public class GeneralTests extends TestBase {
     public void getSliderCataegories() {
         List<WebElement> sliderCategoryList = home.clickSliderCategoryButtons();
         sliderCategoryList.get(0).click();
-        System.out.println(driver.getCurrentUrl());
-        softAssert.assertTrue(driver.getCurrentUrl().contains("summer"), "summer button does not run");
-        softAssert.assertAll();
+        Assert.assertTrue(driver.getCurrentUrl().contains("summer"), "summer button does not run");
 
     }
 
@@ -37,24 +35,21 @@ public class GeneralTests extends TestBase {
     public void getPeopleCategories() throws InterruptedException {
         List<WebElement> peopleCategoryList = home.clickPeopleCategoryButtons();
         peopleCategoryList.get(2).click();
-        softAssert.assertTrue(driver.getCurrentUrl().contains("child"), "Child category button does not run");
-        softAssert.assertAll();
+        Assert.assertTrue(driver.getCurrentUrl().contains("child"), "Child category button does not run");
     }
 
     @Test(groups = "withoutlogin", description = "Verify - the most populer 8 products on screen and all have images")
     public void verifyMostPopularProducts() {
         List<Boolean> mostPopulerProductsList = home.mostPopulerProducts();
-        softAssert.assertTrue(mostPopulerProductsList.size() == 8, "most populer products less then 8");
+        Assert.assertTrue(mostPopulerProductsList.size() == 8, "most populer products less then 8");
         mostPopulerProductsList.forEach(product -> softAssert.assertTrue(product));
-        softAssert.assertAll();
     }
 
 
     @Test(groups = "withoutlogin", description = "sign in process")
     public void signIn() {
         home.getLoginPage("admin", "123456");
-        softAssert.assertTrue(home.verifyLogin());
-        softAssert.assertAll();
+        Assert.assertTrue(home.verifyLogin());
     }
 
     @Test(groups = "logedIn", description = "to get product page and check all elements on this page")
@@ -74,8 +69,7 @@ public class GeneralTests extends TestBase {
     @Test(groups = "logedIn", description = "to control badge text when the add cart button is clicked")
     public void verifyBadge() {
         ProductPage productPage = home.getProductPage(5);
-        softAssert.assertTrue(productPage.controlBadge(3));
-        softAssert.assertAll();
+        Assert.assertTrue(productPage.controlBadge(3));
     }
 
     @Test(groups = "logedIn", description = "to control products's color, size and amount are correct or not")
@@ -98,8 +92,7 @@ public class GeneralTests extends TestBase {
     public void verifyTotalPrice() {
         CartPage cartPage = new CartPage(driver).goToCartPage();
         System.out.println(cartPage.compareTotalPrice());
-        softAssert.assertTrue(cartPage.compareTotalPrice(), "the Price on order Summery is not equal with the total price in the cart");
-        softAssert.assertAll();
+        Assert.assertTrue(cartPage.compareTotalPrice(), "the Price on order Summery is not equal with the total price in the cart");
     }
 
     // bu fonksiyonlari filter yada search sonrasi kullanmak daha faydali olacak. Key word ler belirleyerek, urunlerin isimlerine gore sonuclar almayi deneyelim.
@@ -109,11 +102,8 @@ public class GeneralTests extends TestBase {
         home.addToCartFromMostPopuler(3);
         CartPage cartPage = home.goToCartPage();
         Integer productCount = cartPage.getCountOfProducts("basket");
-        System.out.println(productCount);
         Integer afterClickProductCount = cartPage.deleteProduct("basket");
-        System.out.println(afterClickProductCount);
-        softAssert.assertTrue(productCount - 1 == afterClickProductCount, "delete button does not work");
-        softAssert.assertAll();
+        Assert.assertTrue(productCount - 1 == afterClickProductCount, "delete button does not work");
     }
 
     @Test(groups = "logedIn", description = "to check delete button in save for later ")
@@ -123,11 +113,8 @@ public class GeneralTests extends TestBase {
         CartPage cartPage = home.goToCartPage();
         cartPage.addSaveForLater();
         Integer productCount = cartPage.getCountOfProducts("later");
-        System.out.println(productCount);
         Integer afterClickProductCount = cartPage.deleteProduct("later");
-        System.out.println(afterClickProductCount);
-        softAssert.assertTrue(productCount - 1 == afterClickProductCount, "delete button does not work in save for later");
-        softAssert.assertAll();
+        Assert.assertTrue(productCount - 1 == afterClickProductCount, "delete button does not work in save for later");
     }
 
     @Test(groups = "logedIn", description = "to check save for later button functionality")
@@ -174,48 +161,42 @@ public class GeneralTests extends TestBase {
     // bu testen bilerek hata almak istiyorum, raporda gosterebilmek icin.
     @Test(groups = "logedIn", description = "to check possibility of same product 2 times adding to cart with add cart button ")
     public void controlSameProductTwoTimesAdding() throws InterruptedException {
-        softAssert.assertTrue(home.addProductToCartThreeTimes(), "Same product can be added 2 or more times to cart");
-        softAssert.assertAll();
+        Assert.assertTrue(home.addProductToCartThreeTimes(), "Same product can be added 2 or more times to cart");
     }
 
     @Test(groups = "logedIn", description = "to control search function with keyword value")
-    public void verifyFunctionalityOfSearchbarAtHomePage() {
+    public void verifyFunctionalityOfSearchbarAtHomePage() throws InterruptedException {
         List<String> keyList = new ArrayList<>(List.of("bag", "coat", "dress"));
         List<Boolean> matchList = home.searchProduct(keyList);
-        softAssert.assertTrue(matchList.stream().allMatch(n -> n = true), "All search keys are not match with product's title");
-        softAssert.assertAll();
+        Assert.assertTrue(matchList.stream().allMatch(n -> n = true), "All search keys are not match with product's title");
     }
 
     @Test(groups = "logedIn", description = "To control filtering function, but only what colors are available for the product.")
     public void verifyColorFilter() throws InterruptedException {
         ProductListPage productListPage = home.getProductListPage();
         List<Boolean> matchList = productListPage.checkColorFilter();
-        matchList.forEach(element -> softAssert.assertTrue(element, "This Product with this color not in product List"));
-        softAssert.assertAll();
+        matchList.forEach(element -> Assert.assertTrue(element, "This Product with this color not in product List"));
     }
 
     @Test(groups = "logedIn", description = "To control filtering function, but only what colors are not available for the product.")
     public void verifyColorFilterNotInProduct() throws InterruptedException {
         ProductListPage productListPage = home.getProductListPage();
         List<Boolean> matchList = productListPage.checkColorFilterNotInProduct();
-        matchList.forEach(element -> softAssert.assertFalse(element, "This Product with this size in product List"));
-        softAssert.assertAll();
+        matchList.forEach(element -> Assert.assertFalse(element, "This Product(" + element + ") with this size in product List"));
     }
 
     @Test(groups = "logedIn", description = "To control filtering function, but only what sizes are available for the product.")
     public void verifySizeFilter() throws InterruptedException {
         ProductListPage productListPage = home.getProductListPage();
         List<Boolean> matchList = productListPage.checkSizeFilter();
-        matchList.forEach(element -> softAssert.assertTrue(element, "This Product with this size not in product List"));
-        softAssert.assertAll();
+        matchList.forEach(element -> Assert.assertTrue(element, "This Product(" + element + ") with this size not in product List"));
     }
 
     @Test(groups = "logedIn", description = "To control filtering function, but only what sizes are not available for the product.")
     public void verifySizeFilterNotInProduct() throws InterruptedException {
         ProductListPage productListPage = home.getProductListPage();
         List<Boolean> matchList = productListPage.checkSizeFilterNotInProduct();
-        matchList.forEach(element -> softAssert.assertFalse(element, "This Product with this size in product List"));
-        softAssert.assertAll();
+        matchList.forEach(element -> Assert.assertFalse(element, "This Product(" + element + ") with this size in product List"));
     }
 
     @Test(groups = "logedIn", description = "To control filtering functions for sizes and colors with keyword values")
@@ -231,19 +212,20 @@ public class GeneralTests extends TestBase {
         softAssert.assertTrue(match4, "selected a product that is not in the list but it is on the screen");
         softAssert.assertAll();
     }
+
     @Test(groups = "logedIn", description = "To control filtering functions and sorting functions together")
-    public void verifySortingProductsWithPriceAsc() throws InterruptedException{
+    public void verifySortingProductsWithPriceAsc() throws InterruptedException {
         ProductListPage productListPage = home.getProductListPage();
-        Boolean match = productListPage.controlSortFunction("black","s","asc");
-        softAssert.assertTrue(match,"Asc sorting Process is not working correctly");
+        Boolean match = productListPage.controlSortFunction("black", "s", "asc");
+        Assert.assertTrue(match, "Asc sorting Process is not working correctly");
 
     }
 
     @Test(groups = "logedIn", description = "To control filtering functions and sorting functions together")
-    public void verifySortingProductsWithPriceDesc() throws InterruptedException{
+    public void verifySortingProductsWithPriceDesc() throws InterruptedException {
         ProductListPage productListPage = home.getProductListPage();
-        Boolean match = productListPage.controlSortFunction("blue","l","desc");
-        softAssert.assertTrue(match,"Desc sorting Process is not working correctly");
+        Boolean match = productListPage.controlSortFunction("black", "s", "desc");
+        Assert.assertTrue(match, "Desc sorting Process is not working correctly");
 
     }
 

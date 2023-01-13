@@ -92,9 +92,10 @@ public abstract class PageBase {
 
     // Filter  -  Sort Procesess
 
-    public List<Boolean> searchProduct(List<String> keyList) {
+    public List<Boolean> searchProduct(List<String> keyList) throws InterruptedException {
         List<Boolean> list = new ArrayList<>();
         for (int i = 0; i < keyList.size(); i++) {
+            Thread.sleep(2000);
             searchBar.sendKeys(keyList.get(i));
             if (productListOnHome.size() > 0) {
                 waitVisibilityOf(productListOnHome.get(0));

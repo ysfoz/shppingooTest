@@ -166,8 +166,7 @@ public class ProductListPage extends PageBase {
     // SORTING WITH FOLTERING //
 
     public String getPrice() {
-        String price = productPrice.getText().split(" ")[1].trim();
-        return price;
+        return productPrice.getText().split(" ")[1].trim();
     }
 
     public void setColor(String color) {
@@ -187,20 +186,21 @@ public class ProductListPage extends PageBase {
 
 
     public List<String> SortFilteredProductsPrice(String color, String size, String descOrAsc) throws InterruptedException {
-        waitVisibilityOf(selectSort);
         String price;
         List<String> priceList = new ArrayList<>();
         setColor(color);
         setSize(size);
         setPriceSort(descOrAsc);
         int count = 0;
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         int listSize = productList.size();
         while (count < listSize) {
             setColor(color);
             setSize(size);
             setPriceSort(descOrAsc);
+            Thread.sleep(3000);
             goProductPage(count, productList);
+            Thread.sleep(3000);
             price = getPrice();
             priceList.add(price);
             driver.navigate().back();
@@ -211,8 +211,11 @@ public class ProductListPage extends PageBase {
     }
 
     public Boolean controlSortFunction(String color, String size, String descOrAsc) throws InterruptedException {
-        List<Integer> priceList = SortFilteredProductsPrice(color, size, descOrAsc).stream().map(item -> Integer.parseInt(item)).collect(Collectors.toList());
+        List<String> list = SortFilteredProductsPrice(color, size, descOrAsc);
+        List<Integer> priceList =list.stream().map(Integer::parseInt).collect(Collectors.toList());
+        System.out.println(priceList);
         List<Integer> sortedList = priceList.stream().sorted().collect(Collectors.toList());
+        System.out.println(sortedList);
         if (descOrAsc.equals("asc") && sortedList.equals(priceList)) {
             return true;
         } else if (descOrAsc.equals("desc") && sortedList.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList()).equals(priceList)) {
