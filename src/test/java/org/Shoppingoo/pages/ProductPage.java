@@ -1,6 +1,5 @@
 package org.Shoppingoo.pages;
 
-import org.Shoppingoo.utilities.AbstractClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,7 +9,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
-public class ProductPage extends AbstractClass {
+public class ProductPage extends PageBase {
 
     WebDriver driver;
 

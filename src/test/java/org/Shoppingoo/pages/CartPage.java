@@ -1,17 +1,15 @@
 package org.Shoppingoo.pages;
 
-import org.Shoppingoo.utilities.AbstractClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CartPage extends AbstractClass {
+public class CartPage extends PageBase {
 
     WebDriver driver;
 

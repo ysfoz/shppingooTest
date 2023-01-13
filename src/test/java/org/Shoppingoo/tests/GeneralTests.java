@@ -3,17 +3,16 @@ package org.Shoppingoo.tests;
 import org.Shoppingoo.pages.CartPage;
 import org.Shoppingoo.pages.ProductListPage;
 import org.Shoppingoo.pages.ProductPage;
-import org.Shoppingoo.utilities.BaseTest;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class GeneralTests extends BaseTest {
+public class GeneralTests extends TestBase {
     SoftAssert softAssert = new SoftAssert();
+
 
 
     @Test(groups = "withoutlogin", description = "Verify the company logo, name, title are  visible.")
@@ -38,7 +37,6 @@ public class GeneralTests extends BaseTest {
     public void getPeopleCategories() throws InterruptedException {
         List<WebElement> peopleCategoryList = home.clickPeopleCategoryButtons();
         peopleCategoryList.get(2).click();
-        System.out.println(driver.getCurrentUrl());
         softAssert.assertTrue(driver.getCurrentUrl().contains("child"), "Child category button does not run");
         softAssert.assertAll();
     }

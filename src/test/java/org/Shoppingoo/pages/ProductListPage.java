@@ -1,6 +1,5 @@
 package org.Shoppingoo.pages;
 
-import org.Shoppingoo.utilities.AbstractClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,7 +11,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ProductListPage extends AbstractClass {
+public class ProductListPage extends PageBase {
     WebDriver driver;
 
     public ProductListPage(WebDriver driver) {

@@ -1,6 +1,5 @@
 package org.Shoppingoo.pages;
 
-import org.Shoppingoo.utilities.AbstractClass;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -9,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomePage extends AbstractClass {
+public class HomePage extends PageBase {
     WebDriver driver;
 
     public HomePage(WebDriver driver) {
@@ -58,10 +57,6 @@ public class HomePage extends AbstractClass {
 
     // ACTIONS
 
-
-    public void getPage() {
-        driver.get("http://localhost:3000/");
-    }
 
     public Boolean getCompanyLogo() throws InterruptedException {
         waitVisibilityOf(companyLogo);
