@@ -9,11 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomePage extends PageBase {
-    WebDriver driver;
 
-    public HomePage(WebDriver driver) {
-        super(driver);
-        this.driver = driver;
+    public HomePage() {
         PageFactory.initElements(driver, this);
     }
 
@@ -128,7 +125,6 @@ public class HomePage extends PageBase {
     }
 
     public void addToCartFromMostPopuler(int productIndex) {
-        Actions actions = new Actions(driver);
         waitVisibilityOfElementLocated(By.cssSelector("div.sc-iveFHk"));
         WebElement productImage = productListOnHome.get(productIndex).findElement(By.tagName("img"));
         actions.moveToElement(productImage);
@@ -139,11 +135,11 @@ public class HomePage extends PageBase {
         waitVisibilityOf(badge);
         int totalProductFirst = Integer.parseInt(badge.getText());
         addToCartFromMostPopuler(4);
-        Thread.sleep(1000);
+        waitFor(1);
         addToCartFromMostPopuler(4);
-        Thread.sleep(1000);
+        waitFor(1);
         addToCartFromMostPopuler(4);
-        Thread.sleep(1000);
+        waitFor(1);
         int totalProductLast = Integer.parseInt(badge.getText());
         return (totalProductLast - 1) == totalProductFirst;
     }
@@ -151,7 +147,7 @@ public class HomePage extends PageBase {
     public ProductListPage getProductListPage() {
         waitVisibilityOf(womanProductButton);
         womanProductButton.click();
-        return new ProductListPage(driver);
+        return new ProductListPage();
     }
 
 }

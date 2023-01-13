@@ -90,7 +90,7 @@ public class GeneralTests extends TestBase {
 
     @Test(groups = "logedIn", description = "to compare total price in order summery and sum of all product prices ")
     public void verifyTotalPrice() {
-        CartPage cartPage = new CartPage(driver).goToCartPage();
+        CartPage cartPage = new CartPage().goToCartPage();
         System.out.println(cartPage.compareTotalPrice());
         Assert.assertTrue(cartPage.compareTotalPrice(), "the Price on order Summery is not equal with the total price in the cart");
     }

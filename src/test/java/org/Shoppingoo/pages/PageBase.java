@@ -1,7 +1,6 @@
 package org.Shoppingoo.pages;
 
-import org.Shoppingoo.pages.CartPage;
-import org.Shoppingoo.pages.ProductPage;
+import org.Shoppingoo.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,13 +15,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class PageBase {
-    WebDriver driver;
+    WebDriver driver = Driver.get();
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    Actions actions = new Actions(driver);
 
-    public PageBase(WebDriver driver) {
-        this.driver = driver;
+    public PageBase() {
+
         PageFactory.initElements(driver,this);
     }
-
     // Nav Bar Buttons
     @FindBy(css = "div.sc-bqWxrE:first-child")
     WebElement gotoCartButtonOnNavBar;
@@ -56,24 +56,20 @@ public abstract class PageBase {
 
 
     public void waitVisibilityOf(WebElement element) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
     public void waitVisibilityOfElementLocated(By locator) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
 
     public void waitTextToBePresentInElement(WebElement element, String value) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.textToBePresentInElement(element, value));
     }
 
 
     public void goProductPage(int productIndex, List<WebElement> list) {
-        Actions actions = new Actions(driver);
         waitVisibilityOfElementLocated(By.cssSelector("div.sc-iveFHk"));
         WebElement productImage = list.get(productIndex).findElement(By.tagName("img"));
         actions.moveToElement(productImage);
@@ -82,12 +78,12 @@ public abstract class PageBase {
 
     public ProductPage getProductPage(int productIndex) {
         goProductPage(productIndex, productListOnHome);
-        return new ProductPage(driver);
+        return new ProductPage();
     }
 
     public CartPage goToCartPage() {
         gotoCartButtonOnNavBar.click();
-        return new CartPage(driver);
+        return new CartPage();
     }
 
     // Filter  -  Sort Procesess
@@ -95,7 +91,7 @@ public abstract class PageBase {
     public List<Boolean> searchProduct(List<String> keyList) throws InterruptedException {
         List<Boolean> list = new ArrayList<>();
         for (int i = 0; i < keyList.size(); i++) {
-            Thread.sleep(2000);
+            waitFor(3);
             searchBar.sendKeys(keyList.get(i));
             if (productListOnHome.size() > 0) {
                 waitVisibilityOf(productListOnHome.get(0));
@@ -103,14 +99,20 @@ public abstract class PageBase {
             ProductPage productPage = getProductPage(productListOnHome.size() - 1);
             waitVisibilityOf(productPage.productTitle);
             String titleKey = productPage.productTitle.getText().split(" ")[0].trim();
-            System.out.println(titleKey);
             Boolean match = titleKey.toLowerCase().contains(keyList.get(i).toLowerCase());
-            System.out.println(match);
             list.add(match);
             driver.navigate().back();
         }
 
         return list;
+    }
+
+    public  void waitFor(int seconds) {
+        try {
+            Thread.sleep(seconds * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 

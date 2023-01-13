@@ -4,22 +4,17 @@ import org.Shoppingoo.pages.HomePage;
 import org.Shoppingoo.utilities.ConfigurationReader;
 import org.Shoppingoo.utilities.Driver;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-
-import org.openqa.selenium.interactions.Actions;
-import java.io.IOException;
-import java.time.Duration;
 
 public class TestBase {
     protected WebDriver driver;
     protected HomePage home;
 
     @BeforeMethod(onlyForGroups = "logedIn", alwaysRun = true)
-    public HomePage logedInMethod() {
+    public HomePage loginAndLaunchApp() {
         driver = Driver.get();
-        home = new HomePage(driver);
+        home = new HomePage();
         driver.get(ConfigurationReader.get("developmentUrl"));
         home.getLoginPage(ConfigurationReader.get("user"), ConfigurationReader.get("password"));
         return home;
@@ -28,7 +23,7 @@ public class TestBase {
     @BeforeMethod(onlyForGroups = "withoutlogin", alwaysRun = true)
     public HomePage launchApp() {
         driver = Driver.get();
-        home = new HomePage(driver);
+        home = new HomePage();
         driver.get(ConfigurationReader.get("developmentUrl"));
         return home;
     }

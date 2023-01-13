@@ -1,7 +1,6 @@
 package org.Shoppingoo.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -11,11 +10,8 @@ import java.util.List;
 
 public class CartPage extends PageBase {
 
-    WebDriver driver;
+    public CartPage() {
 
-    public CartPage(WebDriver driver) {
-        super(driver);
-        this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
@@ -31,8 +27,6 @@ public class CartPage extends PageBase {
     @FindBy(css = "div.sc-hsWlPz div.sc-jGNhvO:first-of-type div.sc-dvEHMn")
     List<WebElement> buttonboxesUnderProducts;
 
-//    @FindBy(css = "div.sc-hsWlPz div.sc-jGNhvO:last-child")
-//    WebElement saveForLaterProductsContainer;
 
     @FindBy(xpath = "//span[text()='Your save for later items']/following-sibling::div")
     WebElement saveForLaterProductsContainer;
@@ -41,8 +35,6 @@ public class CartPage extends PageBase {
     @FindBy(css = "div.sc-hsWlPz div.sc-jGNhvO:last-child div.sc-caPbAK")
     List<WebElement> saveForLaterList;
 
-//    @FindBy(css = "div.sc-hsWlPz div.sc-jGNhvO:last-child div.sc-dvEHMn")
-//    List<WebElement> buttonboxesUnderSaveForLater;
 
     @FindBy(xpath = "//span[text()='Your save for later items']/following-sibling::div//div[contains(@class, 'sc-dvEHMn')]")
     List<WebElement> buttonboxesUnderSaveForLater;
@@ -103,26 +95,26 @@ public class CartPage extends PageBase {
         }
     }
 
-    public Integer deleteProduct(String whichList) throws InterruptedException {
+    public Integer deleteProduct(String whichList) {
         if (whichList.equals("basket")) {
             waitVisibilityOf(productContainer);
             WebElement deleteButton = buttonboxesUnderProducts.get(buttonboxesUnderProducts.size() - 1).findElement(By.xpath("//button[text()='Delete']"));
             deleteButton.click();
-            Thread.sleep(3000);
+            waitFor(3);
             return productList.size();
         } else {
             waitVisibilityOf(saveForLaterProductsContainer);
             WebElement deleteButton = buttonboxesUnderSaveForLater.get(buttonboxesUnderSaveForLater.size() - 1).findElement(By.xpath("//button[text()='Delete']"));
             deleteButton.click();
-            Thread.sleep(3000);
+            waitFor(3);
             return saveForLaterList.size();
         }
     }
 
-    public void addSaveForLater() throws InterruptedException {
+    public void addSaveForLater()  {
         WebElement saveForLaterButton = buttonboxesUnderProducts.get(buttonboxesUnderProducts.size() - 1).findElement(By.xpath("//button[text()='Save for later']"));
         saveForLaterButton.click();
-        Thread.sleep(3000);
+        waitFor(3);
     }
 
     public void moveToBasket() {
@@ -133,14 +125,11 @@ public class CartPage extends PageBase {
     // bu fonksiyon uzerinde calisilacak
     public void seeMoreLikeThis() throws InterruptedException {
         String title = productList.get(productList.size() - 1).findElement(By.cssSelector("span.sc-gzrROc")).getText().split(":")[1].split(" ")[0].trim();
-        System.out.println(title + " title");
-        System.out.println(productList.size() + " product list");
         waitVisibilityOf(buttonboxesUnderProducts.get(buttonboxesUnderProducts.size() - 1));
         Thread.sleep(5000);
         buttonboxesUnderProducts.forEach(item -> System.out.println(item.findElement(By.xpath("//button[text()='See more like this']")).getAttribute("class")));
         WebElement seeMoreLikeThisButton = buttonboxesUnderProducts.get(buttonboxesUnderProducts.size() - 1).findElement(By.xpath("//button[text()='See more like this']"));
         seeMoreLikeThisButton.click();
-        System.out.println(buttonboxesUnderProducts.size() + " button boexes list");
         waitVisibilityOf(productsInSeeMoreLikeThis.get(0));
         productsInSeeMoreLikeThis.forEach(element -> System.out.println("element " + element.getText().split(" ")[0].trim()));
     }

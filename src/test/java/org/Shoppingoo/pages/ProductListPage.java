@@ -1,6 +1,5 @@
 package org.Shoppingoo.pages;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -12,11 +11,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ProductListPage extends PageBase {
-    WebDriver driver;
 
-    public ProductListPage(WebDriver driver) {
-        super(driver);
-        this.driver = driver;
+    public ProductListPage() {
         PageFactory.initElements(driver, this);
     }
 
@@ -64,35 +60,35 @@ public class ProductListPage extends PageBase {
         return productImageList.get(productImageList.size() - 1).getAttribute("src");
     }
 
-    public List<Boolean> checkColorFilter() throws InterruptedException {
+    public List<Boolean> checkColorFilter()  {
         List<Boolean> matchList = new ArrayList<>();
         String imageSrc = getImageSrc();
         List<String> colors = getColors();
         Select select = new Select(selectColor);
         for (int i = 0; i < colors.size(); i++) {
             select.selectByVisibleText(colors.get(i));
-            Thread.sleep(2000);
+            waitFor(3);
             Boolean match = productImageList.stream().anyMatch(element -> element.getAttribute("src").equals(imageSrc));
             matchList.add(match);
         }
         return matchList;
     }
 
-    public List<Boolean> checkSizeFilter() throws InterruptedException {
+    public List<Boolean> checkSizeFilter()  {
         List<Boolean> matchList = new ArrayList<>();
         String imageSrc = getImageSrc();
         List<String> sizes = getSizes();
         Select select = new Select(selectSize);
         for (int i = 0; i < sizes.size(); i++) {
             select.selectByVisibleText(sizes.get(i));
-            Thread.sleep(2000);
+            waitFor(3);
             Boolean match = productImageList.stream().anyMatch(element -> element.getAttribute("src").equals(imageSrc));
             matchList.add(match);
         }
         return matchList;
     }
 
-    public List<Boolean> checkColorFilterNotInProduct() throws InterruptedException {
+    public List<Boolean> checkColorFilterNotInProduct()  {
         List<Boolean> matchList = new ArrayList<>();
         List<String> allcolors = new ArrayList<>(List.of("black", "white", "blue", "yellow", "green", "red"));
         String imageSrc = getImageSrc();
@@ -101,14 +97,14 @@ public class ProductListPage extends PageBase {
         allcolors.removeAll(colors);
         for (int i = 0; i < allcolors.size(); i++) {
             select.selectByVisibleText(allcolors.get(i));
-            Thread.sleep(2000);
+            waitFor(3);
             Boolean match = productImageList.stream().anyMatch(element -> element.getAttribute("src").equals(imageSrc));
             matchList.add(match);
         }
         return matchList;
     }
 
-    public List<Boolean> checkSizeFilterNotInProduct() throws InterruptedException {
+    public List<Boolean> checkSizeFilterNotInProduct() {
         List<Boolean> matchList = new ArrayList<>();
         List<String> allSizes = new ArrayList<>(List.of("xs", "s", "m", "l", "xl"));
         String imageSrc = getImageSrc();
@@ -118,10 +114,10 @@ public class ProductListPage extends PageBase {
         for (int i = 0; i < allSizes.size(); i++) {
             if (allSizes.get(i).equals("xs")) {
                 select.selectByVisibleText("s");
-                Thread.sleep(2000);
+                waitFor(3);
             }
             select.selectByVisibleText(allSizes.get(i));
-            Thread.sleep(2000);
+            waitFor(3);
             Boolean match = productImageList.stream().anyMatch(element -> element.getAttribute("src").equals(imageSrc));
             matchList.add(match);
 
@@ -129,13 +125,13 @@ public class ProductListPage extends PageBase {
         return matchList;
     }
 
-    public Boolean checkSizeAndColorWithKeyword(String color, String size) throws InterruptedException {
+    public Boolean checkSizeAndColorWithKeyword(String color, String size)  {
         Boolean colors = getColors().stream().anyMatch(item -> item.equals(color));
         Boolean sizes = getSizes().stream().anyMatch(item -> item.equals(size));
         Select selcolor = new Select(selectColor);
         Select selsize = new Select(selectSize);
         String imageSrc = getImageSrc();
-        Thread.sleep(2000);
+        waitFor(3);
         if (color.equals("white")) {
             selcolor.selectByVisibleText("black");
             selcolor.selectByVisibleText(color);
@@ -185,22 +181,22 @@ public class ProductListPage extends PageBase {
     }
 
 
-    public List<String> SortFilteredProductsPrice(String color, String size, String descOrAsc) throws InterruptedException {
+    public List<String> SortFilteredProductsPrice(String color, String size, String descOrAsc)  {
         String price;
         List<String> priceList = new ArrayList<>();
         setColor(color);
         setSize(size);
         setPriceSort(descOrAsc);
         int count = 0;
-        Thread.sleep(3000);
+        waitFor(3);
         int listSize = productList.size();
         while (count < listSize) {
             setColor(color);
             setSize(size);
             setPriceSort(descOrAsc);
-            Thread.sleep(3000);
+            waitFor(3);
             goProductPage(count, productList);
-            Thread.sleep(3000);
+            waitFor(3);
             price = getPrice();
             priceList.add(price);
             driver.navigate().back();
@@ -213,9 +209,7 @@ public class ProductListPage extends PageBase {
     public Boolean controlSortFunction(String color, String size, String descOrAsc) throws InterruptedException {
         List<String> list = SortFilteredProductsPrice(color, size, descOrAsc);
         List<Integer> priceList =list.stream().map(Integer::parseInt).collect(Collectors.toList());
-        System.out.println(priceList);
         List<Integer> sortedList = priceList.stream().sorted().collect(Collectors.toList());
-        System.out.println(sortedList);
         if (descOrAsc.equals("asc") && sortedList.equals(priceList)) {
             return true;
         } else if (descOrAsc.equals("desc") && sortedList.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList()).equals(priceList)) {
