@@ -81,9 +81,9 @@ public class GeneralTests extends TestBase {
         productPage.clickAddToCartButton();
         CartPage cartPage = productPage.goToCartPage();
         List<String> propertiesList = cartPage.getColorSizeAmountFromCart();
-        softAssert.assertTrue(color.equals(propertiesList.get(0)), "color is false");
-        softAssert.assertTrue(size.equals(propertiesList.get(1)), "size is false");
-        softAssert.assertTrue(amount.equals(propertiesList.get(2)), "amount is false");
+        softAssert.assertTrue(color.equals(propertiesList.get(0)), "color is incorrect");
+        softAssert.assertTrue(size.equals(propertiesList.get(1)), "size is incorrect");
+        softAssert.assertTrue(amount.equals(propertiesList.get(2)), "amount is incorrect");
         softAssert.assertAll();
 
     }
@@ -91,7 +91,6 @@ public class GeneralTests extends TestBase {
     @Test(groups = "logedIn", description = "to compare total price in order summery and sum of all product prices ")
     public void verifyTotalPrice() {
         CartPage cartPage = new CartPage().goToCartPage();
-        System.out.println(cartPage.compareTotalPrice());
         Assert.assertTrue(cartPage.compareTotalPrice(), "the Price on order Summery is not equal with the total price in the cart");
     }
 
@@ -150,7 +149,11 @@ public class GeneralTests extends TestBase {
     @Test(groups = "logedIn", description = "to check see more like this button")
     // her zamna basket icersindeki ilk butonunu calistiriyor
     public void checkSeeMoreLikeThis() throws InterruptedException {
+//        extentLogger = report.createTest("Checking seeMoreLikeThis button");
+
+//        extentLogger.info("adding a product to cart, that index ist 1");
         home.addToCartFromMostPopuler(1);
+//        extentLogger.info("going to cart page with cart button on navbar");
         CartPage cartPage = home.goToCartPage();
         cartPage.seeMoreLikeThis();
     }
@@ -160,8 +163,11 @@ public class GeneralTests extends TestBase {
 
     // bu testen bilerek hata almak istiyorum, raporda gosterebilmek icin.
     @Test(groups = "logedIn", description = "to check possibility of same product 2 times adding to cart with add cart button ")
-    public void controlSameProductTwoTimesAdding() throws InterruptedException {
-        Assert.assertTrue(home.addProductToCartThreeTimes(), "Same product can be added 2 or more times to cart");
+    public void checkSameProductTwoTimesAdding() throws InterruptedException {
+        extentLogger = report.createTest("checking possibility adding a product to cart two times");
+        extentLogger.info("checked with the product, that index is 4 in most populer products");
+        Assert.assertTrue(home.addProductToCartThreeTimes(4), "Same product can be added 2 or more times to cart");
+        extentLogger.pass("PASSED");
     }
 
     @Test(groups = "logedIn", description = "to control search function with keyword value")

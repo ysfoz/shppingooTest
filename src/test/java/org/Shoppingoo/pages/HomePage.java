@@ -131,14 +131,14 @@ public class HomePage extends PageBase {
         productListOnHome.get(productIndex).findElement(By.tagName("svg")).click();
     }
 
-    public Boolean addProductToCartThreeTimes() throws InterruptedException {
+    public Boolean addProductToCartThreeTimes(Integer productIndex) throws InterruptedException {
         waitVisibilityOf(badge);
         int totalProductFirst = Integer.parseInt(badge.getText());
-        addToCartFromMostPopuler(4);
+        addToCartFromMostPopuler(productIndex);
         waitFor(1);
-        addToCartFromMostPopuler(4);
+        addToCartFromMostPopuler(productIndex);
         waitFor(1);
-        addToCartFromMostPopuler(4);
+        addToCartFromMostPopuler(productIndex);
         waitFor(1);
         int totalProductLast = Integer.parseInt(badge.getText());
         return (totalProductLast - 1) == totalProductFirst;
