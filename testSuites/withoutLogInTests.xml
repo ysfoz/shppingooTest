@@ -8,7 +8,7 @@
     </groups>
     <test name="Logeg in Tests">
         <classes>
-            <class name="org.Shoppingoo.tests.GeneralTests"/>
+            <class name="org.Shoppingoo.tests.WithoutLoginTest"/>
         </classes>
     </test> <!-- Test -->
 

@@ -1,7 +1,7 @@
 package org.Shoppingoo.pages;
 
+import com.aventstack.extentreports.ExtentTest;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -99,7 +99,7 @@ public class HomePage extends PageBase {
         return peopleCategoriesButtons;
     }
 
-    public List mostPopulerProducts() {
+    public List mostPopularProducts() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,700)");
         waitVisibilityOfElementLocated(By.cssSelector("div.sc-iveFHk"));
@@ -131,16 +131,22 @@ public class HomePage extends PageBase {
         productListOnHome.get(productIndex).findElement(By.tagName("svg")).click();
     }
 
-    public Boolean addProductToCartThreeTimes(Integer productIndex) throws InterruptedException {
+    public Boolean addProductToCartThreeTimes(Integer productIndex, ExtentTest extentLogger)  {
         waitVisibilityOf(badge);
+
         int totalProductFirst = Integer.parseInt(badge.getText());
+        extentLogger.info("Total Product before test: " + totalProductFirst);
         addToCartFromMostPopuler(productIndex);
         waitFor(1);
+        extentLogger.info("First turn :" + badge.getText());
         addToCartFromMostPopuler(productIndex);
         waitFor(1);
+        extentLogger.info("Second turn : " + badge.getText());
         addToCartFromMostPopuler(productIndex);
         waitFor(1);
+        extentLogger.info("Third turn : " + badge.getText());
         int totalProductLast = Integer.parseInt(badge.getText());
+        extentLogger.info("Total Product later test: " + totalProductLast);
         return (totalProductLast - 1) == totalProductFirst;
     }
 

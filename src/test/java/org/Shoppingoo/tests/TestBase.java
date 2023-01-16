@@ -68,25 +68,22 @@ public class TestBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown(ITestResult result) throws InterruptedException, IOException {
-        if(result.getStatus()== ITestResult.FAILURE){
+        if (result.getStatus() == ITestResult.FAILURE) {
             //record the name of failed test case
             extentLogger.fail(result.getName());
 
             // take the screenshoot and return location of screenshot
             String screenShotPath = ReUsable.getScreenShoot(result.getName());
 
-
             // adding screenshot to report
 //            extentLogger.addScreenCaptureFromPath(screenShotPath);
-            extentLogger.addScreenCaptureFromPath(screenShotPath);
 
+            extentLogger.addScreenCaptureFromPath(screenShotPath);
             // adding Extension to report
 
             extentLogger.fail(result.getThrowable());
 
 
-        }else if(result.getStatus() == ITestResult.SKIP){
-            extentLogger.skip(result.getName() + " Test skipped");
         }
         Thread.sleep(2000);
         Driver.closeDriver();
@@ -94,7 +91,7 @@ public class TestBase {
 
     @AfterTest
     public void endReport() {
-    report.flush();
+        report.flush();
     }
 }
 

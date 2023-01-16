@@ -14,43 +14,54 @@ import java.util.List;
 public class GeneralTests extends TestBase {
     SoftAssert softAssert = new SoftAssert();
 
-
-    @Test(groups = "withoutlogin", description = "Verify the company logo, name, title are  visible.")
-    public void isVisibleCompanyNameLogoTitle() throws InterruptedException {
-        softAssert.assertTrue(home.getCompanyName(), "Company name is not visible");
-        softAssert.assertTrue(home.getCompanyLogo(), "Company logo is not visible");
-        softAssert.assertTrue(home.getTitle(), "Title is not correct");
-        softAssert.assertAll();
-    }
-
-    @Test(groups = "withoutlogin", description = "Verify that the user is able to navigate different categories with Category buttons on Slider")
-    public void getSliderCataegories() {
-        List<WebElement> sliderCategoryList = home.clickSliderCategoryButtons();
-        sliderCategoryList.get(0).click();
-        Assert.assertTrue(driver.getCurrentUrl().contains("summer"), "summer button does not run");
-
-    }
-
-    @Test(groups = "withoutlogin", description = "Verify that the user is able to navigate different categories with Category buttons on Page")
-    public void getPeopleCategories() throws InterruptedException {
-        List<WebElement> peopleCategoryList = home.clickPeopleCategoryButtons();
-        peopleCategoryList.get(2).click();
-        Assert.assertTrue(driver.getCurrentUrl().contains("child"), "Child category button does not run");
-    }
-
-    @Test(groups = "withoutlogin", description = "Verify - the most populer 8 products on screen and all have images")
-    public void verifyMostPopularProducts() {
-        List<Boolean> mostPopulerProductsList = home.mostPopulerProducts();
-        Assert.assertTrue(mostPopulerProductsList.size() == 8, "most populer products less then 8");
-        mostPopulerProductsList.forEach(product -> softAssert.assertTrue(product));
-    }
-
-
-    @Test(groups = "withoutlogin", description = "sign in process")
-    public void signIn() {
-        home.getLoginPage("admin", "123456");
-        Assert.assertTrue(home.verifyLogin());
-    }
+//    @Test(groups = "withoutlogin", description = "Verify the company logo, name, title are  visible.")
+//    public void isVisibleCompanyNameLogoTitle() throws InterruptedException {
+//        extentLogger =report.createTest("Check Company name, logo and title on Browser");
+//        extentLogger.info("Company name is Shoppingoo");
+//        softAssert.assertTrue(home.getCompanyName(), "Company name is not visible");
+//        extentLogger.info("Company logo is visible");
+//        softAssert.assertTrue(home.getCompanyLogo(), "Company logo is not visible");
+//        extentLogger.info("Title contains 'React'");
+//        softAssert.assertTrue(home.getTitle(), "Title is not correct");
+//        softAssert.assertAll();
+//    }
+//
+//    @Test(groups = "withoutlogin", description = "Verify that the user is able to navigate different categories with Category buttons on Slider")
+//    public void getSliderCataegories() {
+//        extentLogger =report.createTest("Check changing category buttons on slider menu functionality");
+//        List<WebElement> sliderCategoryList = home.clickSliderCategoryButtons();
+//        sliderCategoryList.get(0).click();
+//        Assert.assertTrue(driver.getCurrentUrl().contains("summer"), "summer button does not run");
+//        extentLogger.info("When Zeroth index in Slider Categories is clicked, url changes and contains 'Summer'");
+//
+//    }
+//
+//    @Test(groups = "withoutlogin", description = "Verify that the user is able to navigate different categories with Category buttons on Page")
+//    public void getPeopleCategories() throws InterruptedException {
+//        extentLogger =report.createTest("Check changing category buttons on page functionality");
+//        List<WebElement> peopleCategoryList = home.clickPeopleCategoryButtons();
+//        peopleCategoryList.get(2).click();
+//        Assert.assertTrue(driver.getCurrentUrl().contains("child"), "Child category button does not run");
+//        extentLogger.info("When second index in Slider Categories is clicked, url changes and contains 'Summer'");
+//    }
+//
+//    @Test(groups = "withoutlogin", description = "Verify - the most populer 8 products on screen and all have images")
+//    public void verifyMostPopularProducts() {
+//        extentLogger =report.createTest("Check count of most popular Products and all visible");
+//        List<Boolean> mostPopularProductsList = home.mostPopularProducts();
+//        Assert.assertTrue(mostPopularProductsList.size() == 8, "most populer products less then 8");
+//        extentLogger.info("There are 8 Products as expected");
+//        mostPopularProductsList.forEach(product -> Assert.assertTrue(product));
+//        extentLogger.info("All Product's image is visible");
+//
+//    }
+//
+//
+//    @Test(groups = "withoutlogin", description = "sign in process")
+//    public void signIn() {
+//        home.getLoginPage("admin", "123456");
+//        Assert.assertTrue(home.verifyLogin());
+//    }
 
     @Test(groups = "logedIn", description = "to get product page and check all elements on this page")
     public void goProductPage() {
@@ -166,7 +177,7 @@ public class GeneralTests extends TestBase {
     public void checkSameProductTwoTimesAdding() throws InterruptedException {
         extentLogger = report.createTest("checking possibility adding a product to cart two times");
         extentLogger.info("checked with the product, that index is 4 in most populer products");
-        Assert.assertTrue(home.addProductToCartThreeTimes(4), "Same product can be added 2 or more times to cart");
+        Assert.assertTrue(home.addProductToCartThreeTimes(4,extentLogger), "Same product can be added 2 or more times to cart");
         extentLogger.pass("PASSED");
     }
 
