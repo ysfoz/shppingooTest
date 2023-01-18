@@ -124,11 +124,12 @@ public class HomePage extends PageBase {
         return profilImage.isDisplayed();
     }
 
-    public void addToCartFromMostPopuler(int productIndex) {
+    public void addToCartFromMostPopuler(int productIndex,ExtentTest extentLogger) {
         waitVisibilityOfElementLocated(By.cssSelector("div.sc-iveFHk"));
         WebElement productImage = productListOnHome.get(productIndex).findElement(By.tagName("img"));
         actions.moveToElement(productImage);
         productListOnHome.get(productIndex).findElement(By.tagName("svg")).click();
+        extentLogger.info("The product is added to cart from most popular products, which index number is " + productIndex );
     }
 
     public Boolean addProductToCartThreeTimes(Integer productIndex, ExtentTest extentLogger)  {
@@ -136,13 +137,13 @@ public class HomePage extends PageBase {
 
         int totalProductFirst = Integer.parseInt(badge.getText());
         extentLogger.info("Total Product before test: " + totalProductFirst);
-        addToCartFromMostPopuler(productIndex);
+        addToCartFromMostPopuler(productIndex,extentLogger);
         waitFor(1);
         extentLogger.info("First turn :" + badge.getText());
-        addToCartFromMostPopuler(productIndex);
+        addToCartFromMostPopuler(productIndex,extentLogger);
         waitFor(1);
         extentLogger.info("Second turn : " + badge.getText());
-        addToCartFromMostPopuler(productIndex);
+        addToCartFromMostPopuler(productIndex,extentLogger);
         waitFor(1);
         extentLogger.info("Third turn : " + badge.getText());
         int totalProductLast = Integer.parseInt(badge.getText());
@@ -150,9 +151,10 @@ public class HomePage extends PageBase {
         return (totalProductLast - 1) == totalProductFirst;
     }
 
-    public ProductListPage getProductListPage() {
+    public ProductListPage getProductListPage(ExtentTest extentLogger) {
         waitVisibilityOf(womanProductButton);
         womanProductButton.click();
+        extentLogger.info("Getting category of women products");
         return new ProductListPage();
     }
 

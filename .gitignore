@@ -1,6 +1,6 @@
 # Default ignored files
 /shelf/
-/workspace.xml
+/.idea/workspace.xml
 
 target/
 pom.xml.tag
@@ -13,3 +13,9 @@ buildNumber.properties
 .mvn/timing.properties
 # https://github.com/takari/maven-wrapper#usage-without-binary-jar
 .mvn/wrapper/maven-wrapper.jar
+
+test-output
+
+.gitignoreconfigurations.properties
+.pom.xml
+.gitignore

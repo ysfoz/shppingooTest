@@ -25,7 +25,7 @@ public class TestBase {
     // This is used to create HTML report file
     protected ExtentHtmlReporter htmlReporter;
 
-    @BeforeTest
+    @BeforeTest(alwaysRun = true)
     public void startReport() {
         //initialize report
         report = new ExtentReports();
@@ -44,6 +44,7 @@ public class TestBase {
 
         // set enviroment information
         report.setSystemInfo("Envioriment", "QA");
+        report.setSystemInfo("Tester","ysf");
         report.setSystemInfo("Browser", System.getProperty("browser") != null ? System.getProperty("browser") : ConfigurationReader.get("browser"));
         report.setSystemInfo("OS", System.getProperty("os.name"));
 

@@ -1,5 +1,6 @@
 package org.Shoppingoo.pages;
 
+import com.aventstack.extentreports.ExtentTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -96,16 +97,20 @@ public class ProductPage extends PageBase {
         return addToCartButton.isDisplayed();
     }
 
-    public Boolean controlBadge(int productIndex) {
+    public Boolean controlBadge(int productIndex, ExtentTest extentLogger) {
         waitVisibilityOf(addToCartButton);
         int bofereClicked = Integer.parseInt(badge.getText());
+        extentLogger.info("badge count before test : " + badge.getText() );
         addToCartButton.click();
         waitTextToBePresentInElement(badge, String.valueOf(bofereClicked + 1));
+        extentLogger.info("badge count after first clicked : " + badge.getText() );
         driver.navigate().back();
         goProductPage(productIndex, driver.findElements(By.cssSelector("div.sc-iveFHk")));
+        extentLogger.info("getting second product,index is " + productIndex );
         waitVisibilityOf(addToCartButton);
         addToCartButton.click();
         waitTextToBePresentInElement(badge, String.valueOf(bofereClicked + 2));
+        extentLogger.info("badge count after second clicked : " + badge.getText() );
         return badge.getText().equals(String.valueOf(bofereClicked + 2));
     }
 

@@ -37,7 +37,7 @@ public class WithoutLoginTest extends TestBase {
 
     @Test(groups = "withoutlogin", description = "Verify that the user is able to navigate different categories with Category buttons on Page")
     public void getPeopleCategories() throws InterruptedException {
-        extentLogger =report.createTest("Check changing category buttons on page functionality");
+        extentLogger = report.createTest("Check changing category buttons on page functionality");
         List<WebElement> peopleCategoryList = home.clickPeopleCategoryButtons();
         peopleCategoryList.get(2).click();
         Assert.assertTrue(driver.getCurrentUrl().contains("child"), "Child category button does not run");

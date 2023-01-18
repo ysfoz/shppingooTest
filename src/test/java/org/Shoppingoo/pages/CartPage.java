@@ -1,5 +1,6 @@
 package org.Shoppingoo.pages;
 
+import com.aventstack.extentreports.ExtentTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -123,10 +124,10 @@ public class CartPage extends PageBase {
     }
 
     // bu fonksiyon uzerinde calisilacak
-    public void seeMoreLikeThis() throws InterruptedException {
+    public void seeMoreLikeThis(ExtentTest extentLogger)  {
         String title = productList.get(productList.size() - 1).findElement(By.cssSelector("span.sc-gzrROc")).getText().split(":")[1].split(" ")[0].trim();
         waitVisibilityOf(buttonboxesUnderProducts.get(buttonboxesUnderProducts.size() - 1));
-        Thread.sleep(5000);
+        waitFor(2);
         buttonboxesUnderProducts.forEach(item -> System.out.println(item.findElement(By.xpath("//button[text()='See more like this']")).getAttribute("class")));
         WebElement seeMoreLikeThisButton = buttonboxesUnderProducts.get(buttonboxesUnderProducts.size() - 1).findElement(By.xpath("//button[text()='See more like this']"));
         seeMoreLikeThisButton.click();

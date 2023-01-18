@@ -1,5 +1,7 @@
 package org.Shoppingoo.pages;
 
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import org.Shoppingoo.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -76,31 +78,36 @@ public abstract class PageBase {
         list.get(productIndex).findElement(By.tagName("a")).click();
     }
 
-    public ProductPage getProductPage(int productIndex) {
+    public ProductPage getProductPage(int productIndex,ExtentTest extentLogger) {
+        extentLogger.info("getting the product, index is " + productIndex);
         goProductPage(productIndex, productListOnHome);
         return new ProductPage();
     }
 
-    public CartPage goToCartPage() {
+    public CartPage goToCartPage(ExtentTest extentLogger) {
         gotoCartButtonOnNavBar.click();
+        extentLogger.info("Go to Cart");
         return new CartPage();
     }
 
     // Filter  -  Sort Procesess
 
-    public List<Boolean> searchProduct(List<String> keyList) throws InterruptedException {
+    public List<Boolean> searchProduct(List<String> keyList,ExtentTest extentLogger) throws InterruptedException {
         List<Boolean> list = new ArrayList<>();
+        extentLogger.info("search keys : " + keyList);
         for (int i = 0; i < keyList.size(); i++) {
             waitFor(3);
             searchBar.sendKeys(keyList.get(i));
             if (productListOnHome.size() > 0) {
                 waitVisibilityOf(productListOnHome.get(0));
+
             }
-            ProductPage productPage = getProductPage(productListOnHome.size() - 1);
+            ProductPage productPage = getProductPage(productListOnHome.size() - 1,extentLogger);
             waitVisibilityOf(productPage.productTitle);
             String titleKey = productPage.productTitle.getText().split(" ")[0].trim();
             Boolean match = titleKey.toLowerCase().contains(keyList.get(i).toLowerCase());
             list.add(match);
+            extentLogger.info("key: " + keyList.get(i)+ " / result : " + match );
             driver.navigate().back();
         }
 

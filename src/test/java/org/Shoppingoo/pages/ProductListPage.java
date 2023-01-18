@@ -1,5 +1,6 @@
 package org.Shoppingoo.pages;
 
+import com.aventstack.extentreports.ExtentTest;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -125,7 +126,7 @@ public class ProductListPage extends PageBase {
         return matchList;
     }
 
-    public Boolean checkSizeAndColorWithKeyword(String color, String size)  {
+    public Boolean checkSizeAndColorWithKeyword(String color, String size, ExtentTest extentLogger)  {
         Boolean colors = getColors().stream().anyMatch(item -> item.equals(color));
         Boolean sizes = getSizes().stream().anyMatch(item -> item.equals(size));
         Select selcolor = new Select(selectColor);
@@ -147,10 +148,13 @@ public class ProductListPage extends PageBase {
 
         Boolean match = productImageList.stream().anyMatch(element -> element.getAttribute("src").equals(imageSrc));
         if (colors.equals(true) && sizes.equals(true) && match.equals(true)) {
+            extentLogger.info("keys: " + "'"+color+"'"+" and " + "'"+size+"'" + " available for this product and result : " + "'"+match+"'.");
             return true;
         } else if (colors.equals(false) && sizes.equals(true) && match.equals(false)) {
+            extentLogger.info("key: " + "'"+color+"'"+ " unavailable"+ " and key: " +"'"+size+"'" + " available" +" for this product and result : " + "'"+match+"'.");
             return true;
         } else if (colors.equals(true) && sizes.equals(false) && match.equals(false)) {
+            extentLogger.info("key: " + "'"+color+"'"+ " available"+ " and key: " +"'"+size+"'" + " unavailable" +" for this product and result : " + "'"+match+"'.");
             return true;
         } else if (colors.equals(false) && sizes.equals(false) && match.equals(false)) {
             return true;
@@ -206,7 +210,8 @@ public class ProductListPage extends PageBase {
 
     }
 
-    public Boolean controlSortFunction(String color, String size, String descOrAsc) throws InterruptedException {
+    public Boolean controlSortFunction(String color, String size, String descOrAsc,ExtentTest extentLogger)  {
+        extentLogger.info("Color : " +color+ ", Size : " + size + " Sorting method : " + descOrAsc);
         List<String> list = SortFilteredProductsPrice(color, size, descOrAsc);
         List<Integer> priceList =list.stream().map(Integer::parseInt).collect(Collectors.toList());
         List<Integer> sortedList = priceList.stream().sorted().collect(Collectors.toList());
