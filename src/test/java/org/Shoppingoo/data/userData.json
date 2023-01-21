@@ -1,0 +1,27 @@
+[
+  {
+    "username":"admin",
+    "email":"admin@mail.com",
+    "password":"123456"
+  },
+  {"username":"john",
+    "email":"john@mail.com",
+    "password":"123456"
+  },
+  {"username":"mike",
+    "email":"mike@mail.com",
+    "password":"123456"
+  },
+  {"username":"victor",
+    "email":"victor@mail.com",
+    "password":"123456"
+  },
+  {"username":"admin2",
+    "email":"admin2@mail.com",
+    "password":"123456"
+  },
+  {"username":"ysf",
+    "email":"ysf@mail.com",
+    "password":"123456"
+  }
+]

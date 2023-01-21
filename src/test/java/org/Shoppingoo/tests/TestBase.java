@@ -7,6 +7,7 @@ import org.Shoppingoo.pages.HomePage;
 import org.Shoppingoo.utilities.ConfigurationReader;
 import org.Shoppingoo.utilities.Driver;
 import org.Shoppingoo.utilities.ReUsable;
+import org.Shoppingoo.utilities.ScreenShotCreater;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
@@ -75,7 +76,7 @@ public class TestBase {
             extentLogger.fail(result.getName());
 
             // take the screenshoot and return location of screenshot
-            String screenShotPath = ReUsable.getScreenShoot(result.getName());
+            String screenShotPath = ScreenShotCreater.getScreenShot(result.getName());
 
             // adding screenshot to report
             extentLogger.addScreenCaptureFromPath(screenShotPath);

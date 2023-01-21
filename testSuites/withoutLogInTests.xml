@@ -9,6 +9,7 @@
     <test name="Without Login Tests">
         <classes>
             <class name="org.Shoppingoo.tests.WithoutLoginTest"/>
+            <class name="org.Shoppingoo.tests.LoginTest"/>
         </classes>
     </test> <!-- Test -->
 
