@@ -6,7 +6,7 @@
             <include name="withoutlogin"/>
         </run>
     </groups>
-    <test name="Logeg in Tests">
+    <test name="Without Login Tests">
         <classes>
             <class name="org.Shoppingoo.tests.WithoutLoginTest"/>
         </classes>

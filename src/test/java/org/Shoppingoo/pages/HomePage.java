@@ -55,17 +55,17 @@ public class HomePage extends PageBase {
     // ACTIONS
 
 
-    public Boolean getCompanyLogo() throws InterruptedException {
+    public Boolean getCompanyLogo()  {
         waitVisibilityOf(companyLogo);
         return companyLogo.isDisplayed();
     }
 
-    public Boolean getCompanyName() throws InterruptedException {
+    public Boolean getCompanyName()  {
         waitVisibilityOf(companyName);
         return companyName.getText().equalsIgnoreCase("Shoppingoo");
     }
 
-    public Boolean getTitle() throws InterruptedException {
+    public Boolean getTitle()  {
         return driver.getTitle().contains("React");
     }
 
@@ -87,7 +87,7 @@ public class HomePage extends PageBase {
         return sliderCategoriesButtons;
     }
 
-    public List clickPeopleCategoryButtons() throws InterruptedException {
+    public List clickPeopleCategoryButtons()  {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         waitVisibilityOfElementLocated(By.xpath("//button[text()='SHOP NOW']"));
         js.executeScript("window.scrollBy(0,700)");

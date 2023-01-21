@@ -12,7 +12,7 @@ public class WithoutLoginTest extends TestBase {
     SoftAssert softAssert = new SoftAssert();
 
     @Test(groups = "withoutlogin", description = "Verify the company logo, name, title are  visible.")
-    public void isVisibleCompanyNameLogoTitle() throws InterruptedException {
+    public void isVisibleCompanyNameLogoTitle()  {
         extentLogger =report.createTest("Check Company name, logo and title on Browser");
         extentLogger.info("Company name is Shoppingoo");
         softAssert.assertTrue(home.getCompanyName(), "Company name is not visible");
@@ -35,9 +35,9 @@ public class WithoutLoginTest extends TestBase {
 
     }
 
-    @Test(groups = "withoutlogin", description = "Verify that the user is able to navigate different categories with Category buttons on Page")
+    @Test(groups = {"withoutlogin","smoke"}, description = "Verify that the user is able to navigate different categories with Category buttons on Page")
     public void getPeopleCategories() throws InterruptedException {
-        extentLogger = report.createTest("Check changing category buttons on page functionality");
+        extentLogger =report.createTest("Check changing category buttons on page functionality");
         List<WebElement> peopleCategoryList = home.clickPeopleCategoryButtons();
         peopleCategoryList.get(2).click();
         Assert.assertTrue(driver.getCurrentUrl().contains("child"), "Child category button does not run");
@@ -52,7 +52,7 @@ public class WithoutLoginTest extends TestBase {
         Assert.assertTrue(mostPopularProductsList.size() == 8, "most populer products less then 8");
         extentLogger.info("There are 8 Products as expected");
         mostPopularProductsList.forEach(product -> Assert.assertTrue(product));
-        extentLogger.info("All Product's images is visible");
+        extentLogger.info("All Product's images are visible");
         extentLogger.pass("PASSED");
 
     }

@@ -1,5 +1,9 @@
 # Default ignored files
 /shelf/
+/.gitignore
+/.pom.xml
+/configurations.properties
+
 /.idea/workspace.xml
 
 target/
@@ -16,6 +20,4 @@ buildNumber.properties
 
 test-output
 
-.gitignoreconfigurations.properties
-.pom.xml
-.gitignore
+

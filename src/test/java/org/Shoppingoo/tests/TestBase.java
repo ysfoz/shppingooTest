@@ -9,12 +9,11 @@ import org.Shoppingoo.utilities.Driver;
 import org.Shoppingoo.utilities.ReUsable;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.*;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class TestBase {
     protected WebDriver driver;
@@ -25,13 +24,14 @@ public class TestBase {
     // This is used to create HTML report file
     protected ExtentHtmlReporter htmlReporter;
 
-    @BeforeTest(alwaysRun = true)
+    @BeforeClass(alwaysRun = true)
     public void startReport() {
         //initialize report
         report = new ExtentReports();
         //create a report path
         String projectPath = System.getProperty("user.dir");
-        String path = projectPath + "/test-output/report.html";
+        String date = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+        String path = projectPath + "/test-output/report-"+date+".html";
 
         //initialize html reporter
         htmlReporter = new ExtentHtmlReporter(path);
@@ -44,11 +44,12 @@ public class TestBase {
 
         // set enviroment information
         report.setSystemInfo("Envioriment", "QA");
-        report.setSystemInfo("Tester","ysf");
+        report.setSystemInfo("Tester", "ysf");
         report.setSystemInfo("Browser", System.getProperty("browser") != null ? System.getProperty("browser") : ConfigurationReader.get("browser"));
         report.setSystemInfo("OS", System.getProperty("os.name"));
 
     }
+
 
     @BeforeMethod(onlyForGroups = "logedIn", alwaysRun = true)
     public HomePage loginAndLaunchApp() {
@@ -77,23 +78,21 @@ public class TestBase {
             String screenShotPath = ReUsable.getScreenShoot(result.getName());
 
             // adding screenshot to report
-//            extentLogger.addScreenCaptureFromPath(screenShotPath);
-
             extentLogger.addScreenCaptureFromPath(screenShotPath);
+
             // adding Extension to report
-
             extentLogger.fail(result.getThrowable());
-
-
         }
         Thread.sleep(2000);
         Driver.closeDriver();
     }
 
-    @AfterTest
+    @AfterClass(alwaysRun = true)
     public void endReport() {
         report.flush();
     }
+
+
 }
 
 

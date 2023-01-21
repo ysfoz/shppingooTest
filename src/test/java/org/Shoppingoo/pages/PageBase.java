@@ -92,7 +92,7 @@ public abstract class PageBase {
 
     // Filter  -  Sort Procesess
 
-    public List<Boolean> searchProduct(List<String> keyList,ExtentTest extentLogger) throws InterruptedException {
+    public List<Boolean> searchProduct(List<String> keyList,ExtentTest extentLogger)  {
         List<Boolean> list = new ArrayList<>();
         extentLogger.info("search keys : " + keyList);
         for (int i = 0; i < keyList.size(); i++) {

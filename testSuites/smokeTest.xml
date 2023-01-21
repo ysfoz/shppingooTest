@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Smoke Tests Suite" verbose="2">
+
+    <suite-files>
+        <suite-file path="withoutLogInTests.xml"/>
+        <suite-file path="logedInMethodTests.xml"/>
+    </suite-files>
+
+<!--    <test name="tests 2">-->
+<!--       <classes>-->
+<!--           <class name="org.Shoppingoo.tests.WithoutLoginTest"/>-->
+<!--           <class name="org.Shoppingoo.tests.GeneralTests"/>-->
+<!--       </classes>-->
+<!--    </test>-->
+
+</suite>

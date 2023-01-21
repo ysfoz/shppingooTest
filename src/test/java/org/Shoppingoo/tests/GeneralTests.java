@@ -3,7 +3,6 @@ package org.Shoppingoo.tests;
 import org.Shoppingoo.pages.CartPage;
 import org.Shoppingoo.pages.ProductListPage;
 import org.Shoppingoo.pages.ProductPage;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -15,7 +14,7 @@ public class GeneralTests extends TestBase {
     SoftAssert softAssert = new SoftAssert();
 
 
-    @Test(groups = "logedIn", description = "to get product page and check all elements on this page")
+    @Test(groups = {"logedIn","smoke"}, description = "to get product page and check all elements on this page")
     public void goProductPage() {
         int productIndex = 0;
         extentLogger = report.createTest("to get product page and check all elements on this page");
@@ -161,7 +160,7 @@ public class GeneralTests extends TestBase {
 
     @Test(groups = "logedIn", description = "to check see more like this button")
     // her zamna basket icersindeki ilk butonunu calistiriyor
-    public void checkSeeMoreLikeThis() throws InterruptedException {
+    public void checkSeeMoreLikeThis() {
         extentLogger = report.createTest("Check see more like this button");
         int productIndex = 1;
         home.addToCartFromMostPopuler(productIndex, extentLogger);
@@ -182,7 +181,7 @@ public class GeneralTests extends TestBase {
     }
 
     @Test(groups = "logedIn", description = "to control search function with keyword value")
-    public void verifyFunctionalityOfSearchbarAtHomePage() throws InterruptedException {
+    public void verifyFunctionalityOfSearchbarAtHomePage()  {
         extentLogger = report.createTest("Search functionality");
         List<String> keyList = new ArrayList<>(List.of("bag", "coat", "dress"));
         List<Boolean> matchList = home.searchProduct(keyList, extentLogger);
