@@ -1,12 +1,11 @@
 package org.Shoppingoo.utilities;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.commons.io.FileUtils;
 import org.testng.annotations.DataProvider;
 
-import java.io.FileReader;
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -16,7 +15,7 @@ public class DataUtil {
 
     @DataProvider(name = "loginData")
     public Object[][] getData() throws IOException {
-        List<HashMap<String, String>> data = ReUsable.getDataMaptoString("/src/test/java/org/Shoppingoo/data/userData.json");
+        List<HashMap<String, String>> data = getDataMaptoString("/src/test/java/org/Shoppingoo/data/userData.json");
         Object[][] list = new Object[data.size()][2];
         Iterator<HashMap<String, String>> iterator = data.iterator();
         int i = 0;
@@ -28,4 +27,17 @@ public class DataUtil {
         }
         return list;
     }
+
+    public static List<HashMap<String, String>> getDataMaptoString(String path) throws IOException {
+
+        String jsonString = FileUtils.readFileToString(new File(System
+                .getProperty("user.dir") + path), "UTF-8");
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        List<HashMap<String, String>> data = mapper.readValue(jsonString, new TypeReference<List<HashMap<String, String>>>() {
+        });
+        return data;
+    }
 }
+

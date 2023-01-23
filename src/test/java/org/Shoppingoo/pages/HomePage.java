@@ -37,13 +37,13 @@ public class HomePage extends PageBase {
     WebElement registerButton;
 
     @FindBy(xpath = "//input[@placeholder='username']")
-    WebElement username;
+    public WebElement username;
 
     @FindBy(xpath = "//input[@placeholder='password']")
-    WebElement password;
+    public WebElement password;
 
     @FindBy(css = "button.sc-dkBdza")
-    WebElement loginSubmitButton;
+    public WebElement loginSubmitButton;
 
     @FindBy(css = "img.sc-ksBlkl")
     WebElement profilImage;
@@ -117,6 +117,11 @@ public class HomePage extends PageBase {
         username.sendKeys(user);
         password.sendKeys(userPassword);
         loginSubmitButton.click();
+    }
+
+    public LoginPage goToLoginPage(String user, String userPassword){
+        getLoginPage(user, userPassword);
+        return new LoginPage();
     }
 
     public Boolean verifyLogin() {
