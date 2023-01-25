@@ -1,11 +1,292 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="0" passed="0" failed="0" skipped="0">
+<testng-results retried="2" ignored="0" total="7" passed="5" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-12-08T10:45:19 CET" name="org.Shoppingoo.utilities.BaseTest" finished-at="2022-12-08T10:45:19 CET" duration-ms="15">
+  <suite started-at="2023-01-25T15:39:06 CET" name="Without Login Methods Suite" finished-at="2023-01-25T15:41:22 CET" duration-ms="136080">
     <groups>
+      <group name="smoke">
+        <method signature="WithoutLoginTest.getPeopleCategories()[pri:0, instance:org.Shoppingoo.tests.WithoutLoginTest@47d90b9e]" name="getPeopleCategories" class="org.Shoppingoo.tests.WithoutLoginTest"/>
+      </group> <!-- smoke -->
+      <group name="withoutlogin">
+        <method signature="WithoutLoginTest.getPeopleCategories()[pri:0, instance:org.Shoppingoo.tests.WithoutLoginTest@47d90b9e]" name="getPeopleCategories" class="org.Shoppingoo.tests.WithoutLoginTest"/>
+        <method signature="WithoutLoginTest.getSliderCataegories()[pri:0, instance:org.Shoppingoo.tests.WithoutLoginTest@47d90b9e]" name="getSliderCataegories" class="org.Shoppingoo.tests.WithoutLoginTest"/>
+        <method signature="WithoutLoginTest.isVisibleCompanyNameLogoTitle()[pri:0, instance:org.Shoppingoo.tests.WithoutLoginTest@47d90b9e]" name="isVisibleCompanyNameLogoTitle" class="org.Shoppingoo.tests.WithoutLoginTest"/>
+        <method signature="WithoutLoginTest.signIn()[pri:0, instance:org.Shoppingoo.tests.WithoutLoginTest@47d90b9e]" name="signIn" class="org.Shoppingoo.tests.WithoutLoginTest"/>
+        <method signature="WithoutLoginTest.verifyMostPopularProducts()[pri:0, instance:org.Shoppingoo.tests.WithoutLoginTest@47d90b9e]" name="verifyMostPopularProducts" class="org.Shoppingoo.tests.WithoutLoginTest"/>
+      </group> <!-- withoutlogin -->
     </groups>
-    <test started-at="2022-12-08T10:45:19 CET" name="Command line test" finished-at="2022-12-08T10:45:19 CET" duration-ms="15">
-    </test> <!-- Command line test -->
-  </suite> <!-- org.Shoppingoo.utilities.BaseTest -->
+    <test started-at="2023-01-25T15:39:06 CET" name="Without Login Tests" finished-at="2023-01-25T15:41:22 CET" duration-ms="136080">
+      <class name="org.Shoppingoo.tests.WithoutLoginTest">
+        <test-method is-config="true" signature="startReport()[pri:0, instance:org.Shoppingoo.tests.WithoutLoginTest@47d90b9e]" started-at="2023-01-25T15:39:06 CET" name="startReport" finished-at="2023-01-25T15:39:07 CET" duration-ms="247" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- startReport -->
+        <test-method is-config="true" signature="launchApp()[pri:0, instance:org.Shoppingoo.tests.WithoutLoginTest@47d90b9e]" started-at="2023-01-25T15:39:07 CET" name="launchApp" finished-at="2023-01-25T15:39:19 CET" duration-ms="12763" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchApp -->
+        <test-method signature="getPeopleCategories()[pri:0, instance:org.Shoppingoo.tests.WithoutLoginTest@47d90b9e]" started-at="2023-01-25T15:39:19 CET" name="getPeopleCategories" description="Verify that the user is able to navigate different categories with Category buttons on Page" finished-at="2023-01-25T15:39:21 CET" duration-ms="1236" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getPeopleCategories -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:org.Shoppingoo.tests.WithoutLoginTest@47d90b9e]" started-at="2023-01-25T15:39:21 CET" name="tearDown" finished-at="2023-01-25T15:39:23 CET" duration-ms="2393" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=getPeopleCategories status=SUCCESS method=WithoutLoginTest.getPeopleCategories()[pri:0, instance:org.Shoppingoo.tests.WithoutLoginTest@47d90b9e] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="launchApp()[pri:0, instance:org.Shoppingoo.tests.WithoutLoginTest@47d90b9e]" started-at="2023-01-25T15:39:23 CET" name="launchApp" finished-at="2023-01-25T15:39:26 CET" duration-ms="3392" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchApp -->
+        <test-method signature="getSliderCataegories()[pri:0, instance:org.Shoppingoo.tests.WithoutLoginTest@47d90b9e]" started-at="2023-01-25T15:39:26 CET" name="getSliderCataegories" description="Verify that the user is able to navigate different categories with Category buttons on Slider" finished-at="2023-01-25T15:39:28 CET" duration-ms="1300" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getSliderCataegories -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:org.Shoppingoo.tests.WithoutLoginTest@47d90b9e]" started-at="2023-01-25T15:39:28 CET" name="tearDown" finished-at="2023-01-25T15:39:30 CET" duration-ms="2283" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=getSliderCataegories status=SUCCESS method=WithoutLoginTest.getSliderCataegories()[pri:0, instance:org.Shoppingoo.tests.WithoutLoginTest@47d90b9e] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="launchApp()[pri:0, instance:org.Shoppingoo.tests.WithoutLoginTest@47d90b9e]" started-at="2023-01-25T15:39:30 CET" name="launchApp" finished-at="2023-01-25T15:39:33 CET" duration-ms="3045" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchApp -->
+        <test-method signature="isVisibleCompanyNameLogoTitle()[pri:0, instance:org.Shoppingoo.tests.WithoutLoginTest@47d90b9e]" started-at="2023-01-25T15:39:33 CET" name="isVisibleCompanyNameLogoTitle" description="Verify the company logo, name, title are  visible." finished-at="2023-01-25T15:39:33 CET" duration-ms="102" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- isVisibleCompanyNameLogoTitle -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:org.Shoppingoo.tests.WithoutLoginTest@47d90b9e]" started-at="2023-01-25T15:39:33 CET" name="tearDown" finished-at="2023-01-25T15:39:35 CET" duration-ms="2276" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=isVisibleCompanyNameLogoTitle status=SUCCESS method=WithoutLoginTest.isVisibleCompanyNameLogoTitle()[pri:0, instance:org.Shoppingoo.tests.WithoutLoginTest@47d90b9e] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="launchApp()[pri:0, instance:org.Shoppingoo.tests.WithoutLoginTest@47d90b9e]" started-at="2023-01-25T15:39:35 CET" name="launchApp" finished-at="2023-01-25T15:39:38 CET" duration-ms="3052" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchApp -->
+        <test-method retried="true" signature="signIn()[pri:0, instance:org.Shoppingoo.tests.WithoutLoginTest@47d90b9e]" started-at="2023-01-25T15:39:38 CET" name="signIn" description="sign in process" finished-at="2023-01-25T15:40:19 CET" duration-ms="40817" status="SKIP">
+          <exception class="org.openqa.selenium.TimeoutException">
+            <message>
+              <![CDATA[Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator 'By.cssSelector: img.sc-ksBlkl' (tried for 10 second(s) with 500 milliseconds interval)]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator 'By.cssSelector: img.sc-ksBlkl' (tried for 10 second(s) with 500 milliseconds interval)
+at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:87)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+at org.Shoppingoo.pages.PageBase.waitVisibilityOf(PageBase.java:61)
+at org.Shoppingoo.pages.HomePage.verifyLogin(HomePage.java:128)
+at org.Shoppingoo.tests.WithoutLoginTest.signIn(WithoutLoginTest.java:66)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:677)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:221)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:962)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:806)
+at org.testng.TestRunner.run(TestRunner.java:601)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:433)
+at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:471)
+at org.testng.internal.thread.ThreadUtil.lambda$execute$0(ThreadUtil.java:58)
+at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+at java.base/java.lang.Thread.run(Thread.java:1589)
+Caused by: org.openqa.selenium.NoSuchElementException: For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
+Build info: version: '4.6.0', revision: '79f1c02ae20'
+System info: os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '12.6.2', java.version: '19.0.1'
+Driver info: org.openqa.selenium.safari.SafariDriver
+Command: [FB6CC192-C310-4CDB-92D7-3F7119638402, findElement {using=css selector, value=img.sc-ksBlkl}]
+Capabilities {acceptInsecureCerts: false, browserName: Safari, browserVersion: 16.2, platformName: MAC, safari:automaticInspection: false, safari:automaticProfiling: false, safari:diagnose: false, safari:platformBuildVersion: 21G320, safari:platformVersion: 12.6.2, safari:useSimulator: false, setWindowRect: true, strictFileInteractability: false, webkit:WebRTC: {DisableICECandidateFiltering: false, DisableInsecureMediaCapture: false}}
+Session ID: FB6CC192-C310-4CDB-92D7-3F7119638402
+at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:67)
+at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:484)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:184)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:167)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:142)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:541)
+at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:162)
+at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:365)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:357)
+at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:70)
+at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:39)
+at jdk.proxy2/jdk.proxy2.$Proxy14.isDisplayed(Unknown Source)
+at org.openqa.selenium.support.ui.ExpectedConditions.elementIfVisible(ExpectedConditions.java:307)
+at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:40)
+at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:293)
+at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:290)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:208)
+... 23 more
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- signIn -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:org.Shoppingoo.tests.WithoutLoginTest@47d90b9e]" started-at="2023-01-25T15:40:19 CET" name="tearDown" finished-at="2023-01-25T15:40:22 CET" duration-ms="2285" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=signIn status=SKIP method=WithoutLoginTest.signIn()[pri:0, instance:org.Shoppingoo.tests.WithoutLoginTest@47d90b9e] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="launchApp()[pri:0, instance:org.Shoppingoo.tests.WithoutLoginTest@47d90b9e]" started-at="2023-01-25T15:40:22 CET" name="launchApp" finished-at="2023-01-25T15:40:24 CET" duration-ms="2936" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchApp -->
+        <test-method retried="true" signature="signIn()[pri:0, instance:org.Shoppingoo.tests.WithoutLoginTest@47d90b9e]" started-at="2023-01-25T15:40:24 CET" name="signIn" description="sign in process" finished-at="2023-01-25T15:41:05 CET" duration-ms="40722" status="SKIP">
+          <exception class="org.openqa.selenium.TimeoutException">
+            <message>
+              <![CDATA[Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator 'By.cssSelector: img.sc-ksBlkl' (tried for 10 second(s) with 500 milliseconds interval)]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator 'By.cssSelector: img.sc-ksBlkl' (tried for 10 second(s) with 500 milliseconds interval)
+at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:87)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+at org.Shoppingoo.pages.PageBase.waitVisibilityOf(PageBase.java:61)
+at org.Shoppingoo.pages.HomePage.verifyLogin(HomePage.java:128)
+at org.Shoppingoo.tests.WithoutLoginTest.signIn(WithoutLoginTest.java:66)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:677)
+at org.testng.internal.invokers.TestInvoker.retryFailed(TestInvoker.java:263)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:62)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:962)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:806)
+at org.testng.TestRunner.run(TestRunner.java:601)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:433)
+at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:471)
+at org.testng.internal.thread.ThreadUtil.lambda$execute$0(ThreadUtil.java:58)
+at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+at java.base/java.lang.Thread.run(Thread.java:1589)
+Caused by: org.openqa.selenium.NoSuchElementException: For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
+Build info: version: '4.6.0', revision: '79f1c02ae20'
+System info: os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '12.6.2', java.version: '19.0.1'
+Driver info: org.openqa.selenium.safari.SafariDriver
+Command: [EDB8D5EF-A35C-477C-A961-A9086EB46054, findElement {using=css selector, value=img.sc-ksBlkl}]
+Capabilities {acceptInsecureCerts: false, browserName: Safari, browserVersion: 16.2, platformName: MAC, safari:automaticInspection: false, safari:automaticProfiling: false, safari:diagnose: false, safari:platformBuildVersion: 21G320, safari:platformVersion: 12.6.2, safari:useSimulator: false, setWindowRect: true, strictFileInteractability: false, webkit:WebRTC: {DisableICECandidateFiltering: false, DisableInsecureMediaCapture: false}}
+Session ID: EDB8D5EF-A35C-477C-A961-A9086EB46054
+at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:67)
+at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:484)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:184)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:167)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:142)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:541)
+at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:162)
+at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:365)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:357)
+at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:70)
+at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:39)
+at jdk.proxy2/jdk.proxy2.$Proxy14.isDisplayed(Unknown Source)
+at org.openqa.selenium.support.ui.ExpectedConditions.elementIfVisible(ExpectedConditions.java:307)
+at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:40)
+at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:293)
+at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:290)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:208)
+... 23 more
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- signIn -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:org.Shoppingoo.tests.WithoutLoginTest@47d90b9e]" started-at="2023-01-25T15:41:05 CET" name="tearDown" finished-at="2023-01-25T15:41:07 CET" duration-ms="2273" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=signIn status=SKIP method=WithoutLoginTest.signIn()[pri:0, instance:org.Shoppingoo.tests.WithoutLoginTest@47d90b9e] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="launchApp()[pri:0, instance:org.Shoppingoo.tests.WithoutLoginTest@47d90b9e]" started-at="2023-01-25T15:41:07 CET" name="launchApp" finished-at="2023-01-25T15:41:12 CET" duration-ms="4495" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchApp -->
+        <test-method signature="signIn()[pri:0, instance:org.Shoppingoo.tests.WithoutLoginTest@47d90b9e]" started-at="2023-01-25T15:41:12 CET" name="signIn" description="sign in process" finished-at="2023-01-25T15:41:13 CET" duration-ms="1018" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- signIn -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:org.Shoppingoo.tests.WithoutLoginTest@47d90b9e]" started-at="2023-01-25T15:41:13 CET" name="tearDown" finished-at="2023-01-25T15:41:15 CET" duration-ms="2280" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=signIn status=SUCCESS method=WithoutLoginTest.signIn()[pri:0, instance:org.Shoppingoo.tests.WithoutLoginTest@47d90b9e] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="launchApp()[pri:0, instance:org.Shoppingoo.tests.WithoutLoginTest@47d90b9e]" started-at="2023-01-25T15:41:15 CET" name="launchApp" finished-at="2023-01-25T15:41:19 CET" duration-ms="4123" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchApp -->
+        <test-method signature="verifyMostPopularProducts()[pri:0, instance:org.Shoppingoo.tests.WithoutLoginTest@47d90b9e]" started-at="2023-01-25T15:41:19 CET" name="verifyMostPopularProducts" description="Verify - the most populer 8 products on screen and all have images" finished-at="2023-01-25T15:41:20 CET" duration-ms="339" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyMostPopularProducts -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:org.Shoppingoo.tests.WithoutLoginTest@47d90b9e]" started-at="2023-01-25T15:41:20 CET" name="tearDown" finished-at="2023-01-25T15:41:22 CET" duration-ms="2289" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verifyMostPopularProducts status=SUCCESS method=WithoutLoginTest.verifyMostPopularProducts()[pri:0, instance:org.Shoppingoo.tests.WithoutLoginTest@47d90b9e] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="endReport()[pri:0, instance:org.Shoppingoo.tests.WithoutLoginTest@47d90b9e]" started-at="2023-01-25T15:41:22 CET" name="endReport" finished-at="2023-01-25T15:41:22 CET" duration-ms="336" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- endReport -->
+      </class> <!-- org.Shoppingoo.tests.WithoutLoginTest -->
+    </test> <!-- Without Login Tests -->
+  </suite> <!-- Without Login Methods Suite -->
 </testng-results>

@@ -2,7 +2,7 @@
 
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Smoke Tests Suite" verbose="2">
+<suite parallel="tests" name="Smoke Tests Suite" verbose="2">
 
 <!--    <suite-files>-->
 <!--        <suite-file path="withoutLogInTests.xml"/>-->

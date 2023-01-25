@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite  name="Without Login Methods Suite">
+<suite parallel="tests"  name="Without Login Methods Suite">
     <groups>
         <run>
             <include name="withoutlogin"/>
