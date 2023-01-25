@@ -1,6 +1,7 @@
 package org.Shoppingoo.tests;
 
 import org.Shoppingoo.utilities.ConfigurationReader;
+import org.Shoppingoo.utilities.ReTry;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -11,9 +12,9 @@ import java.util.List;
 public class WithoutLoginTest extends TestBase {
     SoftAssert softAssert = new SoftAssert();
 
-    @Test(groups = "withoutlogin", description = "Verify the company logo, name, title are  visible.")
-    public void isVisibleCompanyNameLogoTitle()  {
-        extentLogger =report.createTest("Check Company name, logo and title on Browser");
+    @Test(groups = "withoutlogin", description = "Verify the company logo, name, title are  visible.", retryAnalyzer = ReTry.class)
+    public void isVisibleCompanyNameLogoTitle() {
+        extentLogger = report.createTest("Check Company name, logo and title on Browser");
         extentLogger.info("Company name is Shoppingoo");
         softAssert.assertTrue(home.getCompanyName(), "Company name is not visible");
         extentLogger.info("Company logo is visible");
@@ -24,9 +25,9 @@ public class WithoutLoginTest extends TestBase {
         extentLogger.pass("PASSED");
     }
 
-    @Test(groups = "withoutlogin", description = "Verify that the user is able to navigate different categories with Category buttons on Slider")
+    @Test(groups = "withoutlogin", description = "Verify that the user is able to navigate different categories with Category buttons on Slider", retryAnalyzer = ReTry.class)
     public void getSliderCataegories() {
-        extentLogger =report.createTest("Check changing category buttons on slider menu functionality");
+        extentLogger = report.createTest("Check changing category buttons on slider menu functionality");
         List<WebElement> sliderCategoryList = home.clickSliderCategoryButtons();
         sliderCategoryList.get(0).click();
         Assert.assertTrue(driver.getCurrentUrl().contains("summer"), "summer button does not run");
@@ -35,9 +36,9 @@ public class WithoutLoginTest extends TestBase {
 
     }
 
-    @Test(groups = {"withoutlogin","smoke"}, description = "Verify that the user is able to navigate different categories with Category buttons on Page")
+    @Test(groups = {"withoutlogin", "smoke"}, description = "Verify that the user is able to navigate different categories with Category buttons on Page", retryAnalyzer = ReTry.class)
     public void getPeopleCategories() throws InterruptedException {
-        extentLogger =report.createTest("Check changing category buttons on page functionality");
+        extentLogger = report.createTest("Check changing category buttons on page functionality");
         List<WebElement> peopleCategoryList = home.clickPeopleCategoryButtons();
         peopleCategoryList.get(2).click();
         Assert.assertTrue(driver.getCurrentUrl().contains("child"), "Child category button does not run");
@@ -45,9 +46,9 @@ public class WithoutLoginTest extends TestBase {
         extentLogger.pass("PASSED");
     }
 
-    @Test(groups = "withoutlogin", description = "Verify - the most populer 8 products on screen and all have images")
+    @Test(groups = "withoutlogin", description = "Verify - the most populer 8 products on screen and all have images", retryAnalyzer = ReTry.class)
     public void verifyMostPopularProducts() {
-        extentLogger =report.createTest("Check count of most popular Products and all visible");
+        extentLogger = report.createTest("Check count of most popular Products and all visible");
         List<Boolean> mostPopularProductsList = home.mostPopularProducts();
         Assert.assertTrue(mostPopularProductsList.size() == 8, "most populer products less then 8");
         extentLogger.info("There are 8 Products as expected");
@@ -58,9 +59,9 @@ public class WithoutLoginTest extends TestBase {
     }
 
 
-    @Test(groups = "withoutlogin", description = "sign in process")
+    @Test(groups = "withoutlogin", description = "sign in process", retryAnalyzer = ReTry.class)
     public void signIn() {
-        extentLogger =report.createTest("Check sign in with correct username and password");
+        extentLogger = report.createTest("Check sign in with correct username and password");
         home.getLoginPage(ConfigurationReader.get("user"), ConfigurationReader.get("password"));
         Assert.assertTrue(home.verifyLogin());
         extentLogger.info("Profile image is visible on navbar after signed in");

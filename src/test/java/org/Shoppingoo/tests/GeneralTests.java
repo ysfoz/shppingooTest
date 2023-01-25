@@ -3,6 +3,7 @@ package org.Shoppingoo.tests;
 import org.Shoppingoo.pages.CartPage;
 import org.Shoppingoo.pages.ProductListPage;
 import org.Shoppingoo.pages.ProductPage;
+import org.Shoppingoo.utilities.ReTry;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -14,7 +15,7 @@ public class GeneralTests extends TestBase {
     SoftAssert softAssert = new SoftAssert();
 
 
-    @Test(groups = {"logedIn","smoke"}, description = "to get product page and check all elements on this page")
+    @Test(groups = {"logedIn"}, description = "to get product page and check all elements on this page", retryAnalyzer = ReTry.class)
     public void goProductPage() {
         int productIndex = 0;
         extentLogger = report.createTest("to get product page and check all elements on this page");
@@ -39,7 +40,7 @@ public class GeneralTests extends TestBase {
         extentLogger.pass("PASSED");
     }
 
-    @Test(groups = "logedIn", description = "to control badge text when the add cart button is clicked two times")
+    @Test(groups = "logedIn", description = "to control badge text when the add cart button is clicked two times", retryAnalyzer = ReTry.class)
     public void verifyBadge() {
         extentLogger = report.createTest("check badge text changing when the add cart button is clicked two times");
         int productIndex = 5;
@@ -49,7 +50,7 @@ public class GeneralTests extends TestBase {
         extentLogger.pass("PASSED");
     }
 
-    @Test(groups = "logedIn", description = "to control products's color, size and amount are correct or not")
+    @Test(groups = "logedIn", description = "to control products's color, size and amount are correct or not", retryAnalyzer = ReTry.class)
     public void verifyColorSizeAmount() {
         extentLogger = report.createTest("Check color,size and amount are correct when a product was added to the cart");
         int productIndex = 5;
@@ -74,7 +75,7 @@ public class GeneralTests extends TestBase {
 
     }
 
-    @Test(groups = "logedIn", description = "to compare total price in order summery and sum of all product prices")
+    @Test(groups = "logedIn", description = "to compare total price in order summery and sum of all product prices", retryAnalyzer = ReTry.class)
     public void verifyTotalPrice() {
         extentLogger = report.createTest("to compare total price in order summery and sum of all product prices, which is in the cart");
         CartPage cartPage = new CartPage().goToCartPage(extentLogger);
@@ -83,9 +84,8 @@ public class GeneralTests extends TestBase {
         extentLogger.pass("PASSED");
     }
 
-    // bu fonksiyonlari filter yada search sonrasi kullanmak daha faydali olacak. Key word ler belirleyerek, urunlerin isimlerine gore sonuclar almayi deneyelim.
 
-    @Test(groups = "logedIn", description = "to check delete button in Basket")
+    @Test(groups = "logedIn", description = "to check delete button in Basket", retryAnalyzer = ReTry.class)
     public void checkDeleteButtonInBasket() {
         extentLogger = report.createTest("Check delete button in Basket");
         int productIndex = 3;
@@ -101,7 +101,7 @@ public class GeneralTests extends TestBase {
 
     }
 
-    @Test(groups = "logedIn", description = "to check delete button in save for later ")
+    @Test(groups = "logedIn", description = "to check delete button in save for later", retryAnalyzer = ReTry.class)
     // basket icersindeki ilk delete butonunu calistiriyor
     public void checkDeleteButtonInSaveForLater() {
         extentLogger = report.createTest("Check delete button in Save For Later items");
@@ -119,7 +119,7 @@ public class GeneralTests extends TestBase {
         extentLogger.pass("PASSED");
     }
 
-    @Test(groups = "logedIn", description = "to check save for later button functionality")
+    @Test(groups = "logedIn", description = "to check save for later button functionality", retryAnalyzer = ReTry.class)
     public void checkSaveForLaterButton() throws InterruptedException {
         extentLogger = report.createTest("check save for later button functionality");
         home.addToCartFromMostPopuler(2, extentLogger);
@@ -134,11 +134,9 @@ public class GeneralTests extends TestBase {
         extentLogger.info("Save for later button works and removes an item from basket");
         softAssert.assertAll();
         extentLogger.pass("PASSED");
-
     }
 
-
-    @Test(groups = "logedIn", description = "to check move to basket button")
+    @Test(groups = "logedIn", description = "to check move to basket button", retryAnalyzer = ReTry.class)
     public void checkMoveToBasketButton() throws InterruptedException {
         extentLogger = report.createTest("check move to basket button");
         home.addToCartFromMostPopuler(1, extentLogger);
@@ -158,7 +156,7 @@ public class GeneralTests extends TestBase {
 
     }
 
-    @Test(groups = "logedIn", description = "to check see more like this button")
+    @Test(groups = "logedIn", description = "to check see more like this button", retryAnalyzer = ReTry.class)
     // her zamna basket icersindeki ilk butonunu calistiriyor
     public void checkSeeMoreLikeThis() {
         extentLogger = report.createTest("Check see more like this button");
@@ -171,8 +169,7 @@ public class GeneralTests extends TestBase {
 // buraya kadar olan testler tekrar gozden gecirilecek - --  -- - - - - - -  - --
 
 
-    // bu testen bilerek hata almak istiyorum, raporda gosterebilmek icin.
-    @Test(groups = "logedIn", description = "to check possibility of same product 2 times adding to cart with add cart button ")
+    @Test(groups = "logedIn", description = "to check possibility of same product 2 times adding to cart with add cart button", retryAnalyzer = ReTry.class)
     public void checkSameProductTwoTimesAdding() {
         extentLogger = report.createTest("checking possibility of adding a product to cart two times");
         int productIndex = 1;
@@ -180,8 +177,8 @@ public class GeneralTests extends TestBase {
         extentLogger.pass("PASSED");
     }
 
-    @Test(groups = "logedIn", description = "to control search function with keyword value")
-    public void verifyFunctionalityOfSearchbarAtHomePage()  {
+    @Test(groups = "logedIn", description = "to control search function with keyword value", retryAnalyzer = ReTry.class)
+    public void verifyFunctionalityOfSearchbarAtHomePage() {
         extentLogger = report.createTest("Search functionality");
         List<String> keyList = new ArrayList<>(List.of("bag", "coat", "dress"));
         List<Boolean> matchList = home.searchProduct(keyList, extentLogger);
@@ -189,58 +186,58 @@ public class GeneralTests extends TestBase {
         extentLogger.pass("PASSED");
     }
 
-    @Test(groups = "logedIn", description = "To control filtering function, but only what colors are available for the product.")
+    @Test(groups = "logedIn", description = "To control filtering function, but only what colors are available for the product.", retryAnalyzer = ReTry.class)
     public void verifyColorFilter() {
-        extentLogger =report.createTest("Filtering products test with available colors ");
+        extentLogger = report.createTest("Filtering products test with available colors ");
         ProductListPage productListPage = home.getProductListPage(extentLogger);
         List<Boolean> matchList = productListPage.checkColorFilter();
-        extentLogger.info("There are " + matchList.size() +"  available colors");
+        extentLogger.info("There are " + matchList.size() + "  available colors");
         matchList.forEach(element -> Assert.assertTrue(element, "This product with this color is not in product List"));
         extentLogger.info("Filtering function with available colors works regularly");
         extentLogger.pass("PASSED");
     }
 
-    @Test(groups = "logedIn", description = "To control filtering function, but only what colors are not available for the product.")
+    @Test(groups = "logedIn", description = "To control filtering function, but only what colors are not available for the product.", retryAnalyzer = ReTry.class)
     public void verifyColorFilterNotInProduct() {
-        extentLogger =report.createTest("Filtering products test with unavailable colors ");
+        extentLogger = report.createTest("Filtering products test with unavailable colors ");
         ProductListPage productListPage = home.getProductListPage(extentLogger);
         List<Boolean> matchList = productListPage.checkColorFilterNotInProduct();
-        extentLogger.info("There are " + matchList.size() +"  unavailable colors");
+        extentLogger.info("There are " + matchList.size() + "  unavailable colors");
         matchList.forEach(element -> Assert.assertFalse(element, "This Product(" + element + ") with this size in product List"));
         extentLogger.info("Filtering function with unavailable colors works regularly");
         extentLogger.pass("PASSED");
     }
 
-    @Test(groups = "logedIn", description = "To control filtering function, but only what sizes are available for the product.")
+    @Test(groups = "logedIn", description = "To control filtering function, but only what sizes are available for the product.", retryAnalyzer = ReTry.class)
     public void verifySizeFilter() {
-        extentLogger =report.createTest("Filtering products test with available sizes");
+        extentLogger = report.createTest("Filtering products test with available sizes");
         ProductListPage productListPage = home.getProductListPage(extentLogger);
         List<Boolean> matchList = productListPage.checkSizeFilter();
-        extentLogger.info("There are " + matchList.size() +"  available sizes");
+        extentLogger.info("There are " + matchList.size() + "  available sizes");
         matchList.forEach(element -> Assert.assertTrue(element, "This Product(" + element + ") with this size not in product List"));
         extentLogger.info("Filtering function with available sizes works regularly");
         extentLogger.pass("PASSED");
     }
 
-    @Test(groups = "logedIn", description = "To control filtering function, but only what sizes are not available for the product.")
+    @Test(groups = "logedIn", description = "To control filtering function, but only what sizes are not available for the product.", retryAnalyzer = ReTry.class)
     public void verifySizeFilterNotInProduct() {
-        extentLogger =report.createTest("Filtering products test with unavailable sizes");
+        extentLogger = report.createTest("Filtering products test with unavailable sizes");
         ProductListPage productListPage = home.getProductListPage(extentLogger);
         List<Boolean> matchList = productListPage.checkSizeFilterNotInProduct();
-        extentLogger.info("There are " + matchList.size() +"  unavailable sizes");
+        extentLogger.info("There are " + matchList.size() + "  unavailable sizes");
         matchList.forEach(element -> Assert.assertFalse(element, "This Product(" + element + ") with this size in product List"));
         extentLogger.info("Filtering function with unavailable sizes works regularly");
         extentLogger.pass("PASSED");
     }
 
-    @Test(groups = "logedIn", description = "To control filtering functions for sizes and colors with keyword values")
+    @Test(groups = "logedIn", description = "To control filtering functions for sizes and colors with keyword values", retryAnalyzer = ReTry.class)
     public void verifySizeAndColorWithKeyword() {
         extentLogger = report.createTest("Filtering test with keywords");
         ProductListPage productListPage = home.getProductListPage(extentLogger);
-        Boolean match1 = productListPage.checkSizeAndColorWithKeyword("red", "s",extentLogger);
-        Boolean match2 = productListPage.checkSizeAndColorWithKeyword("yellow", "xl",extentLogger);
-        Boolean match3 = productListPage.checkSizeAndColorWithKeyword("white", "l",extentLogger);
-        Boolean match4 = productListPage.checkSizeAndColorWithKeyword("black", "xs",extentLogger);
+        Boolean match1 = productListPage.checkSizeAndColorWithKeyword("red", "s", extentLogger);
+        Boolean match2 = productListPage.checkSizeAndColorWithKeyword("yellow", "xl", extentLogger);
+        Boolean match3 = productListPage.checkSizeAndColorWithKeyword("white", "l", extentLogger);
+        Boolean match4 = productListPage.checkSizeAndColorWithKeyword("black", "xs", extentLogger);
         softAssert.assertTrue(match1, "selected a product is in the list but it is not on the screen");
         softAssert.assertTrue(match2, "selected a product is not in the list but it is on the screen");
         softAssert.assertTrue(match3, "selected a product is not in the list but it is on the screen");
@@ -249,21 +246,21 @@ public class GeneralTests extends TestBase {
         extentLogger.pass("PASSED");
     }
 
-    @Test(groups = "logedIn", description = "To control filtering functions and sorting(asc) functions together")
-    public void verifySortingProductsWithPriceAsc()  {
+    @Test(groups = "logedIn", description = "To control filtering functions and sorting(asc) functions together", retryAnalyzer = ReTry.class)
+    public void verifySortingProductsWithPriceAsc() {
         extentLogger = report.createTest("Filtering and sorting test together");
         ProductListPage productListPage = home.getProductListPage(extentLogger);
-        Boolean match = productListPage.controlSortFunction("black", "s", "asc",extentLogger);
+        Boolean match = productListPage.controlSortFunction("black", "s", "asc", extentLogger);
         Assert.assertTrue(match, "Asc sorting Process is not working correctly");
         extentLogger.pass("PASSED");
 
     }
 
-    @Test(groups = "logedIn", description = "To control filtering functions and sorting functions together")
-    public void verifySortingProductsWithPriceDesc()  {
+    @Test(groups = "logedIn", description = "To control filtering functions and sorting functions together", retryAnalyzer = ReTry.class)
+    public void verifySortingProductsWithPriceDesc() {
         extentLogger = report.createTest("Filtering and sorting(desc) test together");
         ProductListPage productListPage = home.getProductListPage(extentLogger);
-        Boolean match = productListPage.controlSortFunction("black", "s", "desc",extentLogger);
+        Boolean match = productListPage.controlSortFunction("black", "s", "desc", extentLogger);
         Assert.assertTrue(match, "Desc sorting Process is not working correctly");
         extentLogger.pass("PASSED");
 

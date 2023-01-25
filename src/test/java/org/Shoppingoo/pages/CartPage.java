@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +49,7 @@ public class CartPage extends PageBase {
     WebElement continueShoppingButton;
 
     @FindBy(xpath = "//button[text()='CHECKOUT NOW']")
-    WebElement CheckoutButton;
+    WebElement checkoutButton;
 
     @FindBy(xpath = "//*[@type='total']//span[contains(.,'$')]")
     WebElement totalPrice;
@@ -145,5 +146,11 @@ public class CartPage extends PageBase {
         }
 
     }
+
+
+
+
+
+
 
 }

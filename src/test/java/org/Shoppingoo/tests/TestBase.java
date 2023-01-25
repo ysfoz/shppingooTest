@@ -6,7 +6,6 @@ import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import org.Shoppingoo.pages.HomePage;
 import org.Shoppingoo.utilities.ConfigurationReader;
 import org.Shoppingoo.utilities.Driver;
-import org.Shoppingoo.utilities.ReUsable;
 import org.Shoppingoo.utilities.ScreenShotCreater;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;

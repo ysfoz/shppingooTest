@@ -2,12 +2,13 @@ package org.Shoppingoo.tests;
 
 import org.Shoppingoo.pages.LoginPage;
 import org.Shoppingoo.utilities.DataUtil;
+import org.Shoppingoo.utilities.ReTry;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class LoginTest extends TestBase {
 
-    @Test(groups = "withoutlogin", dataProviderClass = DataUtil.class, dataProvider = "loginData")
+    @Test(groups = "withoutlogin", dataProviderClass = DataUtil.class, dataProvider = "loginData", retryAnalyzer = ReTry.class)
     public void checkLoginWithValidAccounts(Object username, Object password) {
         extentLogger = report.createTest("Check sign in with valid usernames and passwords");
         home.getLoginPage((String) username, (String) password);
@@ -17,8 +18,8 @@ public class LoginTest extends TestBase {
         extentLogger.pass("PASSED");
     }
 
-    @Test(groups = "withoutlogin")
-    public void checkLoginWithShortUserName()  {
+    @Test(groups = "withoutlogin", retryAnalyzer = ReTry.class)
+    public void checkLoginWithShortUserName() {
         String username = "tt";
         String password = "123456";
         String expectedError = "Username is too short - should be 3 chars minimum.";
@@ -29,8 +30,9 @@ public class LoginTest extends TestBase {
         extentLogger.info("The Error is '" + expectedError + "' as expected");
         extentLogger.pass("PASSED");
     }
-    @Test(groups = "withoutlogin")
-    public void checkLoginWithNoUserName()  {
+
+    @Test(groups = "withoutlogin", retryAnalyzer = ReTry.class)
+    public void checkLoginWithNoUserName() {
         String username = "";
         String password = "123456";
         String expectedError = "username is required";
@@ -43,8 +45,8 @@ public class LoginTest extends TestBase {
 
     }
 
-    @Test(groups = "withoutlogin")
-    public void checkLoginWithShortPassword()  {
+    @Test(groups = "withoutlogin", retryAnalyzer = ReTry.class)
+    public void checkLoginWithShortPassword() {
         String username = "admin";
         String password = "12345";
         String expectedError = "Password is too short - should be 6 chars minimum.";
@@ -56,8 +58,8 @@ public class LoginTest extends TestBase {
         extentLogger.pass("PASSED");
     }
 
-    @Test(groups = "withoutlogin")
-    public void checkLoginWithNoPassword()  {
+    @Test(groups = "withoutlogin", retryAnalyzer = ReTry.class)
+    public void checkLoginWithNoPassword() {
         String username = "admin";
         String password = "";
         String expectedError = "No password provided.";
@@ -69,8 +71,8 @@ public class LoginTest extends TestBase {
         extentLogger.pass("PASSED");
     }
 
-    @Test(groups = "withoutlogin")
-    public void checkLoginWithWrongPassword()  {
+    @Test(groups = "withoutlogin", retryAnalyzer = ReTry.class)
+    public void checkLoginWithWrongPassword() {
         String username = "admin";
         String password = "1234567";
         String expectedError = "Something went wrong !!!";
@@ -82,8 +84,8 @@ public class LoginTest extends TestBase {
         extentLogger.pass("PASSED");
     }
 
-    @Test(groups = "withoutlogin")
-    public void checkLoginWithWrongUsername()  {
+    @Test(groups = "withoutlogin", retryAnalyzer = ReTry.class)
+    public void checkLoginWithWrongUsername() {
         String username = "adminn";
         String password = "123456";
         String expectedError = "Something went wrong !!!";
@@ -95,8 +97,8 @@ public class LoginTest extends TestBase {
         extentLogger.pass("PASSED");
     }
 
-    @Test(groups = "withoutlogin")
-    public void checkLoginWithWrongUsernameAndPAssword()  {
+    @Test(groups = "withoutlogin", retryAnalyzer = ReTry.class)
+    public void checkLoginWithWrongUsernameAndPAssword() {
         String username = "adminn";
         String password = "123455";
         String expectedError = "Something went wrong !!!";
@@ -107,8 +109,6 @@ public class LoginTest extends TestBase {
         extentLogger.info("Username and password are wrong, the Error is '" + expectedError + "' as expected");
         extentLogger.pass("PASSED");
     }
-
-
 
 
 }
