@@ -102,7 +102,6 @@ public class GeneralTests extends TestBase {
     }
 
     @Test(groups = "logedIn", description = "to check delete button in save for later", retryAnalyzer = ReTry.class)
-    // basket icersindeki ilk delete butonunu calistiriyor
     public void checkDeleteButtonInSaveForLater() {
         extentLogger = report.createTest("Check delete button in Save For Later items");
         int productIndex = 5;
@@ -113,7 +112,7 @@ public class GeneralTests extends TestBase {
         Integer productCount = cartPage.getCountOfProducts("later");
         extentLogger.info(String.valueOf(productCount) + " Products in the List");
         Integer afterClickProductCount = cartPage.deleteProduct("later");
-        extentLogger.info(String.valueOf(afterClickProductCount) + " Products in the List");
+        extentLogger.info(String.valueOf(afterClickProductCount) + " Products in the List after delete button clicked");
         Assert.assertTrue(productCount - 1 == afterClickProductCount, "delete button does not work in save for later");
         extentLogger.info("Delete button in save for later works");
         extentLogger.pass("PASSED");
@@ -155,19 +154,6 @@ public class GeneralTests extends TestBase {
         extentLogger.pass("PASSED");
 
     }
-
-    @Test(groups = "logedIn", description = "to check see more like this button", retryAnalyzer = ReTry.class)
-    // her zamna basket icersindeki ilk butonunu calistiriyor
-    public void checkSeeMoreLikeThis() {
-        extentLogger = report.createTest("Check see more like this button");
-        int productIndex = 1;
-        home.addToCartFromMostPopuler(productIndex, extentLogger);
-        CartPage cartPage = home.goToCartPage(extentLogger);
-        cartPage.seeMoreLikeThis(extentLogger);
-    }
-
-// buraya kadar olan testler tekrar gozden gecirilecek - --  -- - - - - - -  - --
-
 
     @Test(groups = "logedIn", description = "to check possibility of same product 2 times adding to cart with add cart button", retryAnalyzer = ReTry.class)
     public void checkSameProductTwoTimesAdding() {

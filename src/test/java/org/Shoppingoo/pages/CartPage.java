@@ -124,17 +124,6 @@ public class CartPage extends PageBase {
         moveToBasketButton.click();
     }
 
-    // bu fonksiyon uzerinde calisilacak
-    public void seeMoreLikeThis(ExtentTest extentLogger)  {
-        String title = productList.get(productList.size() - 1).findElement(By.cssSelector("span.sc-gzrROc")).getText().split(":")[1].split(" ")[0].trim();
-        waitVisibilityOf(buttonboxesUnderProducts.get(buttonboxesUnderProducts.size() - 1));
-        waitFor(2);
-        buttonboxesUnderProducts.forEach(item -> System.out.println(item.findElement(By.xpath("//button[text()='See more like this']")).getAttribute("class")));
-        WebElement seeMoreLikeThisButton = buttonboxesUnderProducts.get(buttonboxesUnderProducts.size() - 1).findElement(By.xpath("//button[text()='See more like this']"));
-        seeMoreLikeThisButton.click();
-        waitVisibilityOf(productsInSeeMoreLikeThis.get(0));
-        productsInSeeMoreLikeThis.forEach(element -> System.out.println("element " + element.getText().split(" ")[0].trim()));
-    }
 
     public Integer saveForLaterOrMoveToBasket(String action) throws InterruptedException {
         if (action.equals("save")) {

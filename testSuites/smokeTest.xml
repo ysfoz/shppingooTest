@@ -4,16 +4,18 @@
 
 <suite name="Smoke Tests Suite" verbose="2">
 
-    <suite-files>
-        <suite-file path="withoutLogInTests.xml"/>
-        <suite-file path="logedInMethodTests.xml"/>
-    </suite-files>
+<!--    <suite-files>-->
+<!--        <suite-file path="withoutLogInTests.xml"/>-->
+<!--        <suite-file path="logInTests.xml"/>-->
+<!--        <suite-file path="logedInMethodTests.xml"/>-->
+<!--    </suite-files>-->
 
-<!--    <test name="tests 2">-->
-<!--       <classes>-->
-<!--           <class name="org.Shoppingoo.tests.WithoutLoginTest"/>-->
-<!--           <class name="org.Shoppingoo.tests.GeneralTests"/>-->
-<!--       </classes>-->
-<!--    </test>-->
+    <test name="Smoke Tests 2">
+       <classes>
+           <class name="org.Shoppingoo.tests.WithoutLoginTest"/>
+           <class name="org.Shoppingoo.tests.LoginTest"/>
+           <class name="org.Shoppingoo.tests.GeneralTests"/>
+       </classes>
+    </test>
 
 </suite>
